@@ -111,88 +111,121 @@ function showCompanyDetail(company) {
   const holdingValue = ownedShares * company.currentPrice;
 
   detailContent.innerHTML = `
-        <div class="company-header">
-            <img src="${company.logo}" alt="${
+    <div class="company-detail-container">
+      <!-- 헤더 섹션 - 로고와 회사명 -->
+      <div class="company-header">
+        <div class="logo-container">
+          <img src="${company.logo}" alt="${
     company.name
-  } 로고" class="company-logo" onerror="this.src='https://via.placeholder.com/80x80?text=${encodeURIComponent(
-    company.name
-  )}'">
-            <div>
-                <h2>${company.name}</h2>
-                <p class="pinyin">${company.namePinyin}</p>
-            </div>
+  } 로고" class="company-logo" 
+            onerror="this.onerror=null; this.src='https://via.placeholder.com/80x80?text=${encodeURIComponent(
+              company.name
+            )}'">
         </div>
-        
+        <div class="company-title">
+          <h2>${company.name}</h2>
+          <p class="pinyin">${company.namePinyin}</p>
+          <span class="industry-badge">${company.industry}</span>
+        </div>
+      </div>
+      
+      <!-- CEO 정보 섹션 -->
+      <div class="ceo-section">
+        <div class="ceo-image-container">
+          <img src="${company.ceo.image}" alt="${
+    company.ceo.name
+  }" class="ceo-image" 
+            onerror="this.onerror=null; this.src='https://via.placeholder.com/60x60?text=${encodeURIComponent(
+              company.ceo.name
+            )}'">
+        </div>
         <div class="ceo-info">
-            <img src="${company.ceo.image}" alt="${
-    company.ceo.name
-  }" class="ceo-image" onerror="this.src='https://via.placeholder.com/60x60?text=${encodeURIComponent(
-    company.ceo.name
-  )}'">
-            <div>
-                <h3>CEO: ${company.ceo.name}</h3>
-                <p class="pinyin">${company.ceo.namePinyin}</p>
-            </div>
+          <h3>CEO</h3>
+          <p class="ceo-name">${company.ceo.name}</p>
+          <p class="pinyin">${company.ceo.namePinyin}</p>
+        </div>
+      </div>
+      
+      <!-- 회사 소개 섹션 -->
+      <div class="company-description-section">
+        <h3>회사 소개</h3>
+        <p>${company.description}</p>
+        <p class="pinyin">${company.descriptionPinyin}</p>
+      </div>
+      
+      <!-- 제품 및 서비스 섹션 -->
+      <div class="products-services-container">
+        <div class="products-section">
+          <h3>주요 제품</h3>
+          <div class="item-list">
+            ${company.products
+              .map((product) => `<div class="item">${product}</div>`)
+              .join('')}
+          </div>
         </div>
         
-        <div class="company-description">
-            <p>${company.description}</p>
-            <p class="pinyin">${company.descriptionPinyin}</p>
+        <div class="services-section">
+          <h3>주요 서비스</h3>
+          <div class="item-list">
+            ${company.services
+              .map((service) => `<div class="item">${service}</div>`)
+              .join('')}
+          </div>
         </div>
-        
-        <div class="company-products">
-            <h3>주요 제품</h3>
-            <ul>
-                ${company.products
-                  .map((product) => `<li>${product}</li>`)
-                  .join('')}
-            </ul>
-        </div>
-        
-        <div class="company-services">
-            <h3>주요 서비스</h3>
-            <ul>
-                ${company.services
-                  .map((service) => `<li>${service}</li>`)
-                  .join('')}
-            </ul>
-        </div>
-        
-        <div class="stock-info">
-            <h3>주가 정보</h3>
-            <p>현재 주가: <span class="current-price">${company.currentPrice.toFixed(
+      </div>
+      
+      <!-- 주가 정보 섹션 -->
+      <div class="stock-info-section">
+        <h3>주가 정보</h3>
+        <div class="stock-price-container">
+          <div class="current-price-box">
+            <span class="label">현재 주가:</span>
+            <span class="current-price">${company.currentPrice.toFixed(
               2
-            )} 위안</span></p>
-            <p>보유 주식: ${ownedShares}주 (${holdingValue.toFixed(2)} 위안)</p>
-            
-            <div class="price-chart">
-                <h4>주가 변동</h4>
-                <canvas id="stockChart" width="400" height="200"></canvas>
-            </div>
+            )} 위안</span>
+          </div>
+          <div class="holdings-box">
+            <span class="label">보유 주식:</span>
+            <span class="holding-amount">${ownedShares}주 (${holdingValue.toFixed(
+    2
+  )} 위안)</span>
+          </div>
         </div>
         
-        <div class="stock-trade">
-            <div class="buy-section">
-                <h3>주식 매수</h3>
-                <input type="number" id="buyQuantity" min="1" value="1">
-                <button id="confirmBuyBtn" data-company-id="${
-                  company.id
-                }">매수 확인</button>
-            </div>
-            
-            <div class="sell-section">
-                <h3>주식 매도</h3>
-                <input type="number" id="sellQuantity" min="1" value="1" max="${ownedShares}" ${
-    ownedShares > 0 ? '' : 'disabled'
-  }>
-                <button id="confirmSellBtn" data-company-id="${company.id}" ${
-    ownedShares > 0 ? '' : 'disabled'
-  }>매도 확인</button>
-            </div>
+        <div class="price-chart">
+          <h4>주가 변동</h4>
+          <canvas id="stockChart" width="100%" height="180"></canvas>
         </div>
-    `;
+      </div>
+      
+      <!-- 주식 거래 섹션 -->
+      <div class="stock-trade-section">
+        <div class="buy-section">
+          <h3>주식 매수</h3>
+          <div class="trade-controls">
+            <input type="number" id="buyQuantity" min="1" value="1" class="quantity-input">
+            <button id="confirmBuyBtn" data-company-id="${
+              company.id
+            }" class="trade-button buy-button">매수 확인</button>
+          </div>
+        </div>
+        
+        <div class="sell-section">
+          <h3>주식 매도</h3>
+          <div class="trade-controls">
+            <input type="number" id="sellQuantity" min="1" value="1" max="${ownedShares}" 
+              ${ownedShares > 0 ? '' : 'disabled'} class="quantity-input">
+            <button id="confirmSellBtn" data-company-id="${company.id}" 
+              ${
+                ownedShares > 0 ? '' : 'disabled'
+              } class="trade-button sell-button">매도 확인</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
 
-  // 매수/매도 버튼 이벤트 리스너
+  // 매수/매도 버튼 이벤트 리스너 설정은 동일하게 유지
   document
     .getElementById('confirmBuyBtn')
     .addEventListener('click', function () {
@@ -211,7 +244,7 @@ function showCompanyDetail(company) {
       showCompanyDetail(company); // 정보 새로고침
     });
 
-  // 주가 차트 렌더링
+  // 주가 차트 렌더링 (기존 코드 유지)
   renderStockChart(company);
 
   // 팝업 표시
@@ -438,4 +471,32 @@ function showNotification(message, type = 'default') {
       toast.classList.add('hidden');
     }, 300);
   }, 2000);
+}
+
+// 매수/매도 결과 메시지 표시 함수 수정
+function showTradeResultMessage(message, type = 'default') {
+  const messageElement = document.getElementById('tradeResultMessage');
+  const messageText = document.getElementById('messageText');
+
+  // 메시지 설정
+  messageText.textContent = message;
+
+  // 스타일 설정
+  messageElement.classList.remove('success', 'error', 'sell', 'hidden');
+
+  if (type === 'success') {
+    messageElement.classList.add('success');
+  } else if (type === 'error') {
+    messageElement.classList.add('error');
+  } else if (type === 'sell') {
+    messageElement.classList.add('sell');
+  }
+
+  // 메시지 표시
+  messageElement.classList.remove('hidden');
+
+  // 0.7초 후 메시지 숨기기
+  setTimeout(() => {
+    messageElement.classList.add('hidden');
+  }, 700);
 }
