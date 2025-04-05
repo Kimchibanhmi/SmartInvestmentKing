@@ -78,27 +78,67 @@ function endTurn() {
 
 // 주식 매수 함수
 function buyStock(companyId, quantity) {
-  const company = companies.find((c) => c.id === companyId);
-  const totalCost = company.currentPrice * quantity;
+  // 문자열로 들어왔을 경우 숫자로 변환
+  const companyIdNum = parseInt(companyId);
+
+  // 회사 찾기
+  const company = companies.find((c) => c.id === companyIdNum);
+  if (!company) {
+    console.error('매수 오류: 회사를 찾을 수 없음', companyIdNum);
+    return false;
+  }
+
+  // 수량을 숫자로 확실히 변환
+  const quantityNum = parseInt(quantity);
+  if (isNaN(quantityNum) || quantityNum <= 0) {
+    console.error('매수 오류: 유효하지 않은 수량', quantity);
+    return false;
+  }
+
+  const totalCost = company.currentPrice * quantityNum;
 
   if (totalCost > gameState.money) {
     showTradeResultMessage('자금이 부족합니다!', 'error');
     return false;
   }
 
-  // 포트폴리오 업데이트
-  if (!gameState.portfolio[companyId]) {
-    gameState.portfolio[companyId] = 0;
+  // gameState.portfolio가 없으면 초기화
+  if (!gameState.portfolio) {
+    gameState.portfolio = {};
   }
-  gameState.portfolio[companyId] += quantity;
+
+  // 포트폴리오에 회사 ID를 문자열로 저장
+  const companyIdStr = companyIdNum.toString();
+
+  // 해당 회사의 보유 정보 초기화
+  if (!gameState.portfolio[companyIdStr]) {
+    gameState.portfolio[companyIdStr] = {
+      quantity: 0,
+      avgPrice: 0,
+      totalCost: 0,
+    };
+  }
+
+  // 평균 매수가 계산
+  const portfolio = gameState.portfolio[companyIdStr];
+  const newTotalCost = portfolio.totalCost + totalCost;
+  const newQuantity = portfolio.quantity + quantityNum;
+
+  portfolio.quantity = newQuantity;
+  portfolio.totalCost = newTotalCost;
+  portfolio.avgPrice = newTotalCost / newQuantity;
 
   // 자금 차감
   gameState.money -= totalCost;
-  gameState.money = Math.round(gameState.money * 100) / 100;
 
-  // 성공 메시지 표시 - 초록색으로 표시
+  // 디버그 로그 추가
+  console.log(
+    `매수 성공: ${company.name} ${quantityNum}주, 단가: ${company.currentPrice}, 총액: ${totalCost}`
+  );
+  console.log('매수 후 포트폴리오:', gameState.portfolio);
+
   showTradeResultMessage(
-    `${company.name} ${quantity}주를 매수하였습니다.`,
+    `${company.name} ${quantityNum}주를 매수하였습니다.`,
     'success'
   );
 
