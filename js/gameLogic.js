@@ -163,33 +163,69 @@ function buyStock(companyId, quantity) {
 
 // 주식 매도 함수
 function sellStock(companyId, quantity) {
-  if (
-    !gameState.portfolio[companyId] ||
-    gameState.portfolio[companyId] < quantity
-  ) {
-    showTradeResultMessage('보유한 주식이 부족합니다!', 'error');
+  // 문자열 ID로 변환
+  const companyIdStr = String(companyId);
+
+  // 회사 찾기
+  const company = companies.find((c) => String(c.id) === companyIdStr);
+
+  if (!company) {
+    console.error('매도할 회사를 찾을 수 없습니다.');
     return false;
   }
 
-  const company = companies.find((c) => c.id === companyId);
-  const totalValue = company.currentPrice * quantity;
+  // 포트폴리오에서 보유 주식 확인
+  if (!gameState.portfolio || !gameState.portfolio[companyIdStr]) {
+    showTradeResultMessage('보유한 주식이 없습니다!', 'error');
+    return false;
+  }
 
-  // 포트폴리오 업데이트
-  gameState.portfolio[companyId] -= quantity;
-  if (gameState.portfolio[companyId] === 0) {
-    delete gameState.portfolio[companyId];
+  // 보유 주식 정보
+  const portfolio = gameState.portfolio[companyIdStr];
+  const ownedShares = Number(portfolio.quantity || 0);
+
+  // 충분한 주식이 있는지 확인
+  if (ownedShares < quantity) {
+    showTradeResultMessage(
+      `보유한 주식(${ownedShares}주)보다 많은 수량을 매도할 수 없습니다.`,
+      'error'
+    );
+    return false;
+  }
+
+  // 매도 금액 계산
+  const sellValue = company.currentPrice * quantity;
+
+  // 보유 주식 수량 업데이트
+  portfolio.quantity = ownedShares - quantity;
+
+  // 보유 주식이 0이 되면 포트폴리오에서 제거
+  if (portfolio.quantity <= 0) {
+    delete gameState.portfolio[companyIdStr];
+  } else {
+    // 평균 구매가와 총 비용 조정
+    const costPerShare = portfolio.totalCost / ownedShares;
+    portfolio.totalCost -= costPerShare * quantity;
   }
 
   // 자금 증가
-  gameState.money += totalValue;
-  gameState.money = Math.round(gameState.money * 100) / 100;
+  gameState.money += sellValue;
 
-  // 성공 메시지 표시 - 빨간색으로 표시 (매도는 "sell" 타입 사용)
+  // 디버깅 정보
+  console.log(
+    `매도 완료: ${company.name} ${quantity}주, 수익: ${sellValue.toFixed(
+      2
+    )} 위안`
+  );
+  console.log('포트폴리오 상태:', JSON.stringify(gameState.portfolio));
+
+  // 메시지 표시
   showTradeResultMessage(
     `${company.name} ${quantity}주를 매도하였습니다.`,
     'sell'
   );
 
+  // UI 업데이트
   updateUI();
   return true;
 }
