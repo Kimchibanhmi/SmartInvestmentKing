@@ -213,7 +213,7 @@ function showCompanyDetail(company) {
             <input type="number" id="buyQuantity" min="1" value="1" class="quantity-input">
                 <button id="confirmBuyBtn" data-company-id="${
                   company.id
-                }" class="trade-button buy-button">매수 확인</button>
+                }" class="trade-button buy-button">매수</button>
           </div>
             </div>
             
@@ -225,7 +225,7 @@ function showCompanyDetail(company) {
             <button id="confirmSellBtn" data-company-id="${company.id}" 
               ${
                 ownedShares > 0 ? '' : 'disabled'
-              } class="trade-button sell-button">매도 확인</button>
+              } class="trade-button sell-button">매도</button>
           </div>
         </div>
             </div>
@@ -913,7 +913,7 @@ function endGame() {
   // 초기 자산 확인 (없으면 기본값으로 100 설정)
   const initialMoney = gameState.initialMoney || 100;
 
-  // 수익률 계산 (방어적 코딩으로 NaN 방지)
+  // 수익률 계산
   let profitPercent = 0;
   if (initialMoney > 0) {
     profitPercent = ((finalTotalAssets - initialMoney) / initialMoney) * 100;
@@ -933,72 +933,106 @@ function endGame() {
   const gameOverPopup = document.getElementById('gameOverPopup');
   const gameOverContent = document.getElementById('gameOverContent');
 
-  // gameOverContent 요소가 없으면 생성
   if (!gameOverPopup || !gameOverContent) {
     console.error('게임 종료 팝업 요소를 찾을 수 없습니다. HTML을 확인하세요.');
     alert(
       `게임 종료! 30일 동안 ${Math.abs(profitPercent).toFixed(
         2
-      )}%의 ${resultText}을 기록했습니다. 등급: ${performance.grade}`
+      )}%의 ${resultText}을 기록했습니다.`
     );
     return;
   }
 
+  // 포트폴리오 스타일로 게임 종료 팝업 디자인
   gameOverContent.innerHTML = `
-    <h2>게임 종료!</h2>
-    <div class="grade-display grade-${performance.grade.toLowerCase()}">
-      <div class="grade-label">등급</div>
-      <div class="grade-value">${performance.grade}</div>
-    </div>
-    <div class="result-message ${resultClass}">${performance.message}</div>
-    <div class="result-summary">
-      <p>30일 동안의 투자가 끝났습니다!</p>
-      <div class="final-results">
-        <div class="result-item">
-          <span class="result-label">초기 자산:</span>
-          <span class="result-value">${initialMoney.toLocaleString()} 위안</span>
+    <div class="game-over-container">
+      <div class="asset-summary">
+        <div class="summary-title">게임 종료: 투자 결과</div>
+        <div class="grade-container">
+          <div class="grade-badge grade-${performance.grade.toLowerCase()}">${
+    performance.grade
+  }</div>
+          <div class="grade-message ${resultClass}">${performance.message}</div>
         </div>
-        <div class="result-item">
-          <span class="result-label">최종 자산:</span>
-          <span class="result-value">${finalTotalAssets
-            .toFixed(2)
-            .toLocaleString()} 위안</span>
-        </div>
-        <div class="result-item">
-          <span class="result-label">보유 현금:</span>
-          <span class="result-value">${gameState.money
-            .toFixed(2)
-            .toLocaleString()} 위안</span>
-        </div>
-        <div class="result-item">
-          <span class="result-label">주식 가치:</span>
-          <span class="result-value">${finalStockValue
-            .toFixed(2)
-            .toLocaleString()} 위안</span>
-        </div>
-        <div class="result-item highlight ${resultClass}">
-          <span class="result-label">총 ${resultText}률:</span>
-          <span class="result-value">${formattedProfitPercent}%</span>
+        <div class="summary-grid">
+          <div class="summary-item">
+            <div class="item-label">초기 자산</div>
+            <div class="item-value">${initialMoney
+              .toFixed(2)
+              .toLocaleString()} 위안</div>
+          </div>
+          <div class="summary-item">
+            <div class="item-label">최종 자산</div>
+            <div class="item-value">${finalTotalAssets
+              .toFixed(2)
+              .toLocaleString()} 위안</div>
+          </div>
+          <div class="summary-item">
+            <div class="item-label">보유 현금</div>
+            <div class="item-value">${gameState.money
+              .toFixed(2)
+              .toLocaleString()} 위안</div>
+          </div>
+          <div class="summary-item">
+            <div class="item-label">주식 가치</div>
+            <div class="item-value">${finalStockValue
+              .toFixed(2)
+              .toLocaleString()} 위안</div>
+          </div>
+          <div class="summary-item ${resultClass} full-width">
+            <div class="item-label">총 ${resultText}률</div>
+            <div class="item-value">${formattedProfitPercent}%</div>
+          </div>
         </div>
       </div>
-      
-      <div class="investment-tips">
-        <h3>투자 팁:</h3>
-        <ul>
+
+      <div class="tips-container">
+        <div class="section-title">투자 팁</div>
+        <ul class="tips-list">
           ${performance.tips.map((tip) => `<li>${tip}</li>`).join('')}
         </ul>
       </div>
-    </div>
-    <div class="game-over-actions">
-      <button id="restartGameBtn" class="restart-btn">다시 시작하기</button>
+      
+      <div class="game-over-buttons">
+        <button onclick="window.location.reload()" class="game-button restart-btn">게임 다시하기</button>
+        <button id="finalPortfolioBtn" class="game-button portfolio-btn">나의 포트폴리오 확인</button>
+      </div>
     </div>
   `;
 
-  // 다시 시작하기 버튼에 이벤트 리스너 추가
-  const restartGameBtn = document.getElementById('restartGameBtn');
-  if (restartGameBtn) {
-    restartGameBtn.addEventListener('click', function () {
-      location.reload(); // 페이지 새로고침으로 게임 재시작
+  // 포트폴리오 확인 버튼에 이벤트 리스너 추가
+  const finalPortfolioBtn = document.getElementById('finalPortfolioBtn');
+  if (finalPortfolioBtn) {
+    finalPortfolioBtn.addEventListener('click', function () {
+      // 게임 종료 팝업 숨기기
+      gameOverPopup.classList.add('hidden');
+
+      // 포트폴리오 팝업 표시
+      showPortfolioPopup();
+
+      // 포트폴리오 팝업에 뒤로가기 버튼 추가
+      const portfolioPopup = document.getElementById('portfolioPopup');
+      const backButton = document.createElement('button');
+      backButton.textContent = '결과 화면으로 돌아가기';
+      backButton.className = 'back-to-results-btn';
+      backButton.addEventListener('click', function () {
+        portfolioPopup.classList.add('hidden');
+        gameOverPopup.classList.remove('hidden');
+      });
+
+      // 기존 버튼이 있으면 제거
+      const existingBackButton = portfolioPopup.querySelector(
+        '.back-to-results-btn'
+      );
+      if (existingBackButton) {
+        existingBackButton.remove();
+      }
+
+      // 포트폴리오 컨텐츠 뒤에 버튼 추가
+      const portfolioContent = document.getElementById('portfolioContent');
+      if (portfolioContent) {
+        portfolioContent.appendChild(backButton);
+      }
     });
   }
 
