@@ -824,3 +824,184 @@ function renderZoomedStockChart(company) {
     },
   });
 }
+
+// 투자 성과 평가 및 피드백 제공 함수
+function evaluatePerformance(profitPercent) {
+  // 수익률에 따른 등급 결정
+  let grade, message;
+
+  if (profitPercent >= 100) {
+    grade = 'S';
+    message = '투자의 귀재! 놀라운 수익률입니다!';
+  } else if (profitPercent >= 50) {
+    grade = 'A';
+    message = '뛰어난 투자자! 훌륭한 수익을 올렸습니다.';
+  } else if (profitPercent >= 0) {
+    grade = 'B';
+    message = '안정적인 투자 성과입니다.';
+  } else {
+    grade = 'C';
+    message = '투자 실패! 다시 도전해보세요!';
+  }
+
+  // 교육적 피드백 생성
+  const tips = getInvestmentTips(profitPercent);
+
+  return {
+    grade,
+    message,
+    tips,
+  };
+}
+
+// 수익률에 따른 투자 팁 제공 함수
+function getInvestmentTips(profitPercent) {
+  let tipPool = [];
+
+  // 수익률에 따른 맞춤형 팁 제공
+  if (profitPercent < 0) {
+    tipPool = [
+      '뉴스의 진위 여부를 판단하는 것이 중요합니다. 가짜 뉴스에 속지 마세요.',
+      '여러 산업에 분산 투자하여 위험을 줄이는 것이 좋습니다.',
+      '한 번의 큰 손실보다 여러 번의 작은 수익이 더 안정적입니다.',
+      '경제 주기를 이해하고 그에 맞는 투자 전략을 세워보세요.',
+      '주가가 떨어질 때가 오히려 매수의 기회일 수 있습니다.',
+      '단기적인 변동에 너무 민감하게 반응하지 마세요.',
+    ];
+  } else if (profitPercent < 50) {
+    tipPool = [
+      '투자 결정을 내리기 전에 뉴스의 영향력을 분석해보세요.',
+      '성장 가능성이 높은 산업을 미리 파악하는 것이의 중요합니다.',
+      '장기적인 투자 계획을 세우고 감정적인 결정을 피하세요.',
+      '수익과 위험의 균형을 잘 고려하여 투자 포트폴리오를 구성하세요.',
+      '주가 추세를 파악하고 적절한 매수/매도 시점을 찾아보세요.',
+      '다양한 정보 소스를 활용하여 투자 결정을 내리세요.',
+    ];
+  } else {
+    tipPool = [
+      '성공적인 투자 결정에 대해 기록하고 분석해보세요.',
+      '지속적인 학습과 시장 분석이 투자 성공의 열쇠입니다.',
+      '좋은 성과에도 위험 관리의 중요성을 잊지 마세요.',
+      '성공 경험을 바탕으로 더 큰 목표를 세워보세요.',
+      '투자 원칙을 세우고 그에 따라 일관된 전략을 유지하세요.',
+      '단기적 성공에 만족하지 말고 장기적인 안목을 길러보세요.',
+    ];
+  }
+
+  // 무작위로 3개의 팁 선택
+  const shuffled = tipPool.sort(() => 0.5 - Math.random());
+  return shuffled.slice(0, 3);
+}
+
+// 게임 종료 함수 수정
+function endGame() {
+  gameState.gameOver = true;
+
+  // 최종 자산 계산
+  let finalStockValue = 0;
+
+  for (const companyId in gameState.portfolio) {
+    if (gameState.portfolio[companyId].quantity > 0) {
+      const company = companies.find((c) => c.id === parseInt(companyId));
+      finalStockValue +=
+        company.currentPrice * gameState.portfolio[companyId].quantity;
+    }
+  }
+
+  const finalTotalAssets = gameState.money + finalStockValue;
+
+  // 초기 자산 확인 (없으면 기본값으로 100 설정)
+  const initialMoney = gameState.initialMoney || 100;
+
+  // 수익률 계산 (방어적 코딩으로 NaN 방지)
+  let profitPercent = 0;
+  if (initialMoney > 0) {
+    profitPercent = ((finalTotalAssets - initialMoney) / initialMoney) * 100;
+  }
+
+  // 소수점 둘째 자리까지 표시
+  const formattedProfitPercent = profitPercent.toFixed(2);
+
+  // 수익/손실 텍스트와 클래스 결정
+  const resultText = profitPercent >= 0 ? '수익' : '손실';
+  const resultClass = profitPercent >= 0 ? 'profit' : 'loss';
+
+  // 성과 평가 및 피드백 가져오기
+  const performance = evaluatePerformance(profitPercent);
+
+  // 결과 팝업 HTML
+  const gameOverPopup = document.getElementById('gameOverPopup');
+  const gameOverContent = document.getElementById('gameOverContent');
+
+  // gameOverContent 요소가 없으면 생성
+  if (!gameOverPopup || !gameOverContent) {
+    console.error('게임 종료 팝업 요소를 찾을 수 없습니다. HTML을 확인하세요.');
+    alert(
+      `게임 종료! 30일 동안 ${Math.abs(profitPercent).toFixed(
+        2
+      )}%의 ${resultText}을 기록했습니다. 등급: ${performance.grade}`
+    );
+    return;
+  }
+
+  gameOverContent.innerHTML = `
+    <h2>게임 종료!</h2>
+    <div class="grade-display grade-${performance.grade.toLowerCase()}">
+      <div class="grade-label">등급</div>
+      <div class="grade-value">${performance.grade}</div>
+    </div>
+    <div class="result-message ${resultClass}">${performance.message}</div>
+    <div class="result-summary">
+      <p>30일 동안의 투자가 끝났습니다!</p>
+      <div class="final-results">
+        <div class="result-item">
+          <span class="result-label">초기 자산:</span>
+          <span class="result-value">${initialMoney.toLocaleString()} 위안</span>
+        </div>
+        <div class="result-item">
+          <span class="result-label">최종 자산:</span>
+          <span class="result-value">${finalTotalAssets
+            .toFixed(2)
+            .toLocaleString()} 위안</span>
+        </div>
+        <div class="result-item">
+          <span class="result-label">보유 현금:</span>
+          <span class="result-value">${gameState.money
+            .toFixed(2)
+            .toLocaleString()} 위안</span>
+        </div>
+        <div class="result-item">
+          <span class="result-label">주식 가치:</span>
+          <span class="result-value">${finalStockValue
+            .toFixed(2)
+            .toLocaleString()} 위안</span>
+        </div>
+        <div class="result-item highlight ${resultClass}">
+          <span class="result-label">총 ${resultText}률:</span>
+          <span class="result-value">${formattedProfitPercent}%</span>
+        </div>
+      </div>
+      
+      <div class="investment-tips">
+        <h3>투자 팁:</h3>
+        <ul>
+          ${performance.tips.map((tip) => `<li>${tip}</li>`).join('')}
+        </ul>
+      </div>
+    </div>
+    <div class="game-over-actions">
+      <button id="restartGameBtn" class="restart-btn">다시 시작하기</button>
+    </div>
+  `;
+
+  // 다시 시작하기 버튼에 이벤트 리스너 추가
+  const restartGameBtn = document.getElementById('restartGameBtn');
+  if (restartGameBtn) {
+    restartGameBtn.addEventListener('click', function () {
+      location.reload(); // 페이지 새로고침으로 게임 재시작
+    });
+  }
+
+  // 결과 팝업 표시
+  gameOverPopup.classList.remove('hidden');
+}
