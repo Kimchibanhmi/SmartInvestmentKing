@@ -111,9 +111,30 @@ let cameFromPortfolio = false;
 function showCompanyDetail(company) {
   const detailContent = document.getElementById('companyDetailContent');
 
-  // 보유 주식 정보
-  const ownedShares = gameState.portfolio[company.id] || 0;
-  const holdingValue = ownedShares * company.currentPrice;
+  // 보유 주식 확인을 위한 변수
+  let ownedShares = 0;
+
+  // gameState.portfolio 객체가 존재하는지 확인
+  if (gameState.portfolio) {
+    // 문자열로 변환된 ID로 보유 주식 확인
+    const companyIdStr = String(company.id);
+    const portfolioItem = gameState.portfolio[companyIdStr];
+
+    // portfolioItem이 존재하고 quantity가 있는 경우
+    if (portfolioItem && typeof portfolioItem.quantity !== 'undefined') {
+      ownedShares = Number(portfolioItem.quantity);
+      console.log(`회사 ID ${companyIdStr}의 보유 주식: ${ownedShares}주`);
+    }
+  }
+
+  // 보유 주식 문자열 생성
+  let holdingText = '보유주식 없음';
+  let holdingValue = 0;
+
+  if (ownedShares > 0) {
+    holdingValue = ownedShares * company.currentPrice;
+    holdingText = `${ownedShares}주 (${holdingValue.toFixed(2)} 위안)`;
+  }
 
   detailContent.innerHTML = `
     <div class="company-detail-container">
@@ -191,9 +212,7 @@ function showCompanyDetail(company) {
           </div>
           <div class="holdings-box">
             <span class="label">보유 주식:</span>
-            <span class="holding-amount">${ownedShares}주 (${holdingValue.toFixed(
-    2
-  )} 위안)</span>
+            <span class="holding-amount">${holdingText}</span>
             </div>
         </div>
         
