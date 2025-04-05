@@ -99,6 +99,9 @@ function renderCompanyList() {
   });
 }
 
+// 포트폴리오에서 왔는지 추적할 변수 추가
+let cameFromPortfolio = false;
+
 // 회사 상세 정보 표시
 function showCompanyDetail(company) {
   const detailContent = document.getElementById('companyDetailContent');
@@ -358,6 +361,9 @@ function showPortfolioPopup() {
       const companyId = parseInt(this.getAttribute('data-company-id'));
       const company = companies.find((c) => c.id === companyId);
 
+      // 포트폴리오에서 왔음을 표시
+      cameFromPortfolio = true;
+
       // 포트폴리오 팝업 닫기
       portfolioPopup.classList.add('hidden');
 
@@ -379,15 +385,30 @@ restartGameBtn.addEventListener('click', () => {
   initGame();
 });
 
-// 팝업 닫기 버튼 이벤트
-document.querySelectorAll('.close-btn').forEach((btn) => {
-  btn.addEventListener('click', () => {
-    btn.closest('.popup').classList.add('hidden');
-  });
-});
+// 닫기 버튼 이벤트 핸들러 수정
+function setupCloseButtons() {
+  document.querySelectorAll('.close-btn').forEach((btn) => {
+    btn.addEventListener('click', function () {
+      const popup = this.closest('.popup');
+      popup.classList.add('hidden');
 
-// 페이지 로드 시 시작 팝업 표시
-window.addEventListener('load', () => {
+      // 회사 상세 정보 팝업에서 X 버튼을 누른 경우에만 처리
+      if (popup.id === 'companyDetailPopup' && cameFromPortfolio) {
+        // 다시 포트폴리오 팝업 표시
+        showPortfolioPopup();
+        // 플래그 초기화
+        cameFromPortfolio = false;
+      }
+    });
+  });
+}
+
+// 문서 로드 시 이벤트 핸들러 초기화
+document.addEventListener('DOMContentLoaded', function () {
+  // 닫기 버튼 설정 함수 호출
+  setupCloseButtons();
+
+  // 페이지 로드 시 시작 팝업 표시
   startPopup.classList.remove('hidden');
 });
 
