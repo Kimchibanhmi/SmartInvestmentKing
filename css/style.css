@@ -933,25 +933,113 @@ input[type='number'] {
 }
 
 /* 포트폴리오 팝업 스타일 - 가독성 개선 */
-.asset-summary {
-  background: #1a3c6e;
+.asset-summary,
+#portfolioContent .asset-summary {
+  background: #081c3d; /* 더 진한 네이비 블루 */
   border-radius: 12px;
   padding: 20px;
-  margin-bottom: 25px;
-  border: 1px solid #2a5999;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  margin-bottom: 20px;
+  border: 1px solid #1e4585;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35);
 }
 
-.summary-title,
-.section-title {
+.asset-summary .summary-title,
+#portfolioContent .summary-title {
   text-align: center;
   font-size: 1.4rem;
-  font-weight: 600;
-  color: #ffffff;
+  font-weight: 700;
+  color: #ffffff; /* 완전한 흰색 */
   margin-bottom: 20px;
   padding-bottom: 10px;
-  border-bottom: 1px solid #4b7cb8;
+  border-bottom: 1px solid #2c5db1;
   letter-spacing: 0.5px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3); /* 텍스트 그림자 추가 */
+}
+
+.asset-summary .summary-item,
+#portfolioContent .summary-item {
+  padding: 15px;
+  border-radius: 8px;
+  background: #12326e; /* 더 진한 블루 */
+  border: 1px solid #2158a7;
+  transition: transform 0.2s;
+}
+
+.asset-summary .summary-item:hover,
+#portfolioContent .summary-item:hover {
+  background: #183c82; /* 호버 시 색상 */
+}
+
+.asset-summary .item-label,
+#portfolioContent .item-label {
+  font-size: 0.95rem;
+  color: #c9e0ff; /* 더 밝은 하늘색 */
+  margin-bottom: 8px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+
+.asset-summary .item-value,
+#portfolioContent .item-value {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #ffffff; /* 완전한 흰색 */
+  letter-spacing: 0.5px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); /* 텍스트 그림자 추가 */
+}
+
+.asset-summary .summary-item.profit,
+#portfolioContent .summary-item.profit {
+  background: #0e4423; /* 더 진한 녹색 */
+  border: 1px solid #1a7239;
+}
+
+.asset-summary .summary-item.loss,
+#portfolioContent .summary-item.loss {
+  background: #641111; /* 더 진한 빨간색 */
+  border: 1px solid #901919;
+}
+
+.asset-summary .profit,
+#portfolioContent .profit {
+  color: #5affaa !important; /* 더 밝은 녹색 */
+  font-weight: bold;
+  text-shadow: 0 0 8px rgba(90, 255, 170, 0.3); /* 글로우 효과 */
+}
+
+.asset-summary .loss,
+#portfolioContent .loss {
+  color: #ff7c7c !important; /* 더 밝은 빨간색 */
+  font-weight: bold;
+  text-shadow: 0 0 8px rgba(255, 124, 124, 0.3); /* 글로우 효과 */
+}
+
+.asset-summary .summary-item.total-assets,
+#portfolioContent .summary-item.total-assets {
+  background: #0a2968; /* 더 특별한 블루 */
+  border: 1px solid #1a49ad;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* 살짝 더 돋보이게 */
+  grid-column: span 2; /* 두 열을 모두 차지하도록 설정 */
+  width: 100%; /* 전체 너비를 차지하도록 설정 */
+  margin-top: 10px; /* 위 항목들과 약간의 간격 추가 */
+}
+
+/* 총 자산 항목의 콘텐츠 레이아웃 개선 */
+.asset-summary .total-assets .item-label,
+#portfolioContent .total-assets .item-label {
+  font-size: 1rem; /* 레이블 크기 약간 키움 */
+  font-weight: 600; /* 더 굵게 */
+}
+
+.asset-summary .total-assets .item-value,
+#portfolioContent .total-assets .item-value {
+  font-size: 1.5rem; /* 값 크기 키움 */
+  margin-top: 5px; /* 값과 레이블 사이 간격 추가 */
+}
+
+/* 포트폴리오 CSS와 일치시키기 위한 추가 스타일 */
+.full-width {
+  grid-column: span 2;
 }
 
 .summary-grid {
@@ -961,277 +1049,483 @@ input[type='number'] {
 }
 
 .summary-item {
-  padding: 16px;
+  padding: 15px;
   border-radius: 8px;
-  background: #234679;
-  border: 1px solid #3a6db5;
+  background: rgba(25, 118, 210, 0.1);
+  border: 1px solid rgba(30, 136, 229, 0.15);
   transition: transform 0.2s;
 }
 
-.summary-item:hover {
-  transform: translateY(-2px);
-  background: #2a5190;
+.summary-title,
+.section-title {
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #e3f2fd;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(100, 181, 246, 0.3);
+  letter-spacing: 0.5px;
 }
 
-.summary-item.total-assets {
-  grid-column: span 2;
-  background: #0d3c7a;
-  border: 1px solid #1e5eb8;
+.asset-summary {
+  background: linear-gradient(
+    135deg,
+    rgba(21, 101, 192, 0.1),
+    rgba(25, 118, 210, 0.05)
+  );
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+  border: 1px solid rgba(30, 136, 229, 0.2);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .item-label {
-  font-size: 0.9rem;
-  color: #a4c6f4;
+  font-size: 0.85rem;
+  color: #90caf9;
   margin-bottom: 8px;
   font-weight: 500;
 }
 
 .item-value {
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   font-weight: 700;
-  color: #ffffff;
+  color: #e3f2fd;
   letter-spacing: 0.5px;
 }
 
 .summary-item.profit {
-  background: #145029;
-  border: 1px solid #1e7e3d;
-}
-
-.summary-item.profit .item-value {
-  color: #52e374;
+  background: rgba(46, 125, 50, 0.1);
+  border: 1px solid rgba(76, 175, 80, 0.2);
 }
 
 .summary-item.loss {
-  background: #771c1c;
-  border: 1px solid #a72b2b;
-}
-
-.summary-item.loss .item-value {
-  color: #ff7b7b;
-}
-
-.holdings-section {
-  margin-top: 25px;
-}
-
-.table-container {
-  overflow-x: auto;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
-  background: #1a3c6e;
-  border: 1px solid #2a5999;
-}
-
-.holdings-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.95rem;
-}
-
-.holdings-table th {
-  background: #0d3c7a;
-  color: #ffffff;
-  font-weight: 600;
-  padding: 14px 12px;
-  text-transform: none;
-  font-size: 0.9rem;
-  letter-spacing: 0.5px;
-  border-bottom: 2px solid #2a5999;
-  text-align: center;
-}
-
-.holdings-table td {
-  padding: 12px;
-  border-bottom: 1px solid #2a5999;
-  color: #ffffff;
-  font-weight: 400;
-  font-size: 0.95rem;
-}
-
-.holding-row {
-  background: #234679;
-  transition: background 0.2s, transform 0.2s;
-  cursor: pointer;
-}
-
-.holding-row:hover {
-  background: #2a5190;
-  transform: translateY(-1px);
-}
-
-.align-left {
-  text-align: left;
-}
-
-.align-right {
-  text-align: right;
-}
-
-.company-info {
-  display: flex;
-  align-items: center;
-}
-
-.company-logo-small {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  margin-right: 12px;
-  object-fit: cover;
-  border: 2px solid #4b7cb8;
+  background: rgba(198, 40, 40, 0.1);
+  border: 1px solid rgba(244, 67, 54, 0.2);
 }
 
 .profit {
-  color: #52e374 !important;
-  font-weight: bold;
+  color: #4caf50;
 }
 
 .loss {
-  color: #ff7b7b !important;
-  font-weight: bold;
+  color: #f44336;
 }
 
-/* 0원인 경우 흰색으로 표시 */
-.neutral {
-  color: #ffffff !important;
-}
-
-.no-holdings {
-  text-align: center;
-  background: #234679;
-  padding: 40px 20px;
-  border-radius: 12px;
-  margin-top: 20px;
-  border: 1px solid #2a5999;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
-}
-
-.no-holdings p:first-child {
-  font-size: 1.3rem;
-  margin-bottom: 15px;
+/* 게임 종료 팝업 스타일 - 포트폴리오 스타일과 통일 */
+.game-over-container {
+  padding: 20px;
   color: #ffffff;
-  font-weight: 500;
 }
 
-.no-holdings p:last-child {
-  color: #a4c6f4;
-  font-style: italic;
-  font-size: 1rem;
-}
-
-/* 스크롤바 스타일링 */
-.table-container::-webkit-scrollbar {
-  height: 10px;
-}
-
-.table-container::-webkit-scrollbar-track {
-  background: #234679;
-  border-radius: 5px;
-}
-
-.table-container::-webkit-scrollbar-thumb {
-  background: #4b7cb8;
-  border-radius: 5px;
-}
-
-.table-container::-webkit-scrollbar-thumb:hover {
-  background: #5d8ac1;
-}
-
-/* 반응형 디자인 */
-@media (max-width: 992px) {
-  .summary-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .summary-item.total-assets {
-    grid-column: auto;
-  }
-}
-
-/* 게임 종료 팝업 스타일 개선 */
-.grade-display {
+.grade-container {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  margin: 15px auto 25px;
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
   justify-content: center;
+  gap: 20px;
+  margin-bottom: 25px;
+  padding: 15px;
+  background: #1f3253;
+  border-radius: 10px;
+  border: 1px solid #3a5080;
+}
+
+.grade-badge {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: bold;
   box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
-  border: 2px solid rgba(255, 255, 255, 0.3);
 }
 
 .grade-s {
   background: linear-gradient(135deg, #ffd700, #ff8c00);
-  border-color: #ffd700;
+  border: 2px solid #ffd700;
 }
 
 .grade-a {
   background: linear-gradient(135deg, #4caf50, #2e7d32);
-  border-color: #4caf50;
+  border: 2px solid #4caf50;
 }
 
 .grade-b {
   background: linear-gradient(135deg, #2196f3, #0d47a1);
-  border-color: #2196f3;
+  border: 2px solid #2196f3;
 }
 
 .grade-c {
   background: linear-gradient(135deg, #f44336, #b71c1c);
-  border-color: #f44336;
+  border: 2px solid #f44336;
 }
 
-.grade-label {
-  font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.8);
-  margin-bottom: 5px;
-}
-
-.grade-value {
-  font-size: 2.5rem;
+.grade-message {
+  font-size: 1.2rem;
   font-weight: bold;
-  color: #ffffff;
-}
-
-.result-message {
+  flex: 1;
   text-align: center;
-  font-size: 1.3rem;
-  font-weight: bold;
-  margin-bottom: 20px;
-  padding: 10px;
-  border-radius: 8px;
-  background-color: rgba(0, 0, 0, 0.2);
 }
 
-.investment-tips {
-  background-color: rgba(0, 0, 0, 0.2);
-  border-radius: 10px;
-  padding: 15px 20px;
+.tips-container {
+  background: #1f3253;
+  border-radius: 12px;
+  padding: 20px;
+  margin: 20px 0;
+  border: 1px solid #3a5080;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.tips-list {
+  margin: 10px 0 0 0;
+  padding-left: 20px;
+  list-style-type: square;
+}
+
+.tips-list li {
+  margin-bottom: 12px;
+  line-height: 1.5;
+  color: #d9e9ff;
+  font-size: 0.95rem;
+}
+
+.game-over-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
   margin-top: 25px;
 }
 
-.investment-tips h3 {
-  color: #ffeb3b;
+.game-button {
+  padding: 12px 25px;
+  border: none;
+  border-radius: 30px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.restart-btn {
+  background: #0a85e9;
+  color: white;
+}
+
+.restart-btn:hover {
+  background: #0a6fd0;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+.portfolio-btn {
+  background: #2849ab;
+  color: white;
+}
+
+.portfolio-btn:hover {
+  background: #233a8a;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+.back-to-results-btn {
+  display: block;
+  margin: 20px auto 0;
+  padding: 12px 24px;
+  background: #2d4172;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.back-to-results-btn:hover {
+  background: #3a5397;
+}
+
+/* 모바일 대응 */
+@media (max-width: 768px) {
+  .grade-container {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .game-over-buttons {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+/* 포트폴리오 CSS와 일치시키기 위한 추가 스타일 */
+.full-width {
+  grid-column: span 2;
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+.summary-item {
+  padding: 15px;
+  border-radius: 8px;
+  background: rgba(25, 118, 210, 0.1);
+  border: 1px solid rgba(30, 136, 229, 0.15);
+  transition: transform 0.2s;
+}
+
+.summary-title,
+.section-title {
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #e3f2fd;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(100, 181, 246, 0.3);
+  letter-spacing: 0.5px;
+}
+
+.asset-summary {
+  background: rgb(5, 46, 93);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+  border: 1px solid rgba(30, 136, 229, 0.2);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.item-label {
+  font-size: 0.85rem;
+  color: #90caf9;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.item-value {
   font-size: 1.2rem;
-  margin-top: 0;
+  font-weight: 700;
+  color: #e3f2fd;
+  letter-spacing: 0.5px;
+}
+
+.summary-item.profit {
+  background: rgba(46, 125, 50, 0.1);
+  border: 1px solid rgba(76, 175, 80, 0.2);
+}
+
+.summary-item.loss {
+  background: rgba(198, 40, 40, 0.1);
+  border: 1px solid rgba(244, 67, 54, 0.2);
+}
+
+.profit {
+  color: #4caf50;
+}
+
+.loss {
+  color: #f44336;
+}
+
+/* 포트폴리오 보유주식 섹션 완전 개선 */
+
+/* 보유주식 섹션 컨테이너 */
+.holdings-section {
+  background: #081c3d; /* 자산요약 박스와 동일한 배경색 */
+  border-radius: 12px;
+  padding: 20px;
+  margin-top: 25px;
+  border: 1px solid #1e4585;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35);
+}
+
+/* 보유주식 제목 */
+.holdings-section .section-title {
+  text-align: center;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #2c5db1;
+  letter-spacing: 0.5px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* 테이블 컨테이너 스타일 개선 */
+.table-container {
+  background: transparent; /* 배경 투명으로 변경 */
+  border: none;
+  box-shadow: none;
+  overflow-x: auto;
+  padding: 0;
+  border-radius: 0;
+}
+
+/* 테이블 헤더 스타일 개선 */
+.holdings-table th {
+  background: #0a2257; /* 더 진한 블루 */
+  color: #b9d5f7; /* 밝은 파랑 */
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  padding: 8px 10px;
+  border-bottom: 1px solid #2c5db1;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+/* 회사 로고 크기 더 작게 조정 */
+.company-logo-small {
+  width: 20px; /* 더 작게 변경 */
+  height: 20px; /* 더 작게 변경 */
+  border-radius: 50%;
+  margin-right: 8px;
+  object-fit: cover;
+  border: 1px solid rgba(100, 181, 246, 0.4);
+}
+
+/* 회사 정보 레이아웃 개선 */
+.company-info {
+  display: flex;
+  align-items: center;
+  padding: 3px 0;
+}
+
+.company-info span {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #ffffff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 120px;
+}
+
+/* 테이블 행 스타일 개선 */
+.holding-row {
+  background: #0e2a5c; /* 배경색 변경 */
+  height: auto;
+  transition: background 0.2s;
+  border-bottom: 1px solid rgba(44, 93, 177, 0.3);
+}
+
+.holding-row:hover {
+  background: #173d7c !important;
+}
+
+/* 테이블 셀 패딩 및 크기 조정 */
+.holdings-table td {
+  padding: 6px 8px;
+  font-size: 0.85rem;
+  color: #e6eeff;
+  line-height: 1.2;
+  vertical-align: middle;
+}
+
+/* 숫자 데이터 정렬 및 스타일 */
+.align-right {
+  text-align: right;
+  font-family: 'Courier New', monospace;
+  font-size: 0.8rem !important;
+  letter-spacing: -0.3px;
+}
+
+/* 수익/손실 색상 */
+td.profit {
+  color: #5affaa !important;
+}
+
+td.loss {
+  color: #ff7c7c !important;
+}
+
+/* 테이블 레이아웃 최적화 */
+.holdings-table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-top: 5px;
+}
+
+/* 열 너비 조정 */
+.holdings-table th:nth-child(1) {
+  width: 22%;
+} /* 종목명 */
+.holdings-table th:nth-child(2) {
+  width: 10%;
+} /* 보유수량 */
+.holdings-table th:nth-child(3) {
+  width: 12%;
+} /* 매수단가 */
+.holdings-table th:nth-child(4) {
+  width: 10%;
+} /* 현재가 */
+.holdings-table th:nth-child(5) {
+  width: 12%;
+} /* 매수금액 */
+.holdings-table th:nth-child(6) {
+  width: 12%;
+} /* 평가금액 */
+.holdings-table th:nth-child(7) {
+  width: 12%;
+} /* 평가손익 */
+.holdings-table th:nth-child(8) {
+  width: 10%;
+} /* 수익률 */
+
+/* 스크롤바 스타일 개선 */
+.table-container::-webkit-scrollbar {
+  height: 6px;
+}
+
+.table-container::-webkit-scrollbar-track {
+  background: #0a2257;
+  border-radius: 3px;
+}
+
+.table-container::-webkit-scrollbar-thumb {
+  background: #2c5db1;
+  border-radius: 3px;
+}
+
+.table-container::-webkit-scrollbar-thumb:hover {
+  background: #3870d4;
+}
+
+/* 홀수/짝수 행 구분을 위한 약간의 색상 차이 */
+.holding-row:nth-child(even) {
+  background: #0c234e;
+}
+
+/* 보유주식 없음 메시지 개선 */
+.no-holdings {
+  background: #081c3d; /* 자산요약 박스와 동일한 배경색 */
+  text-align: center;
+  padding: 30px 20px;
+  border-radius: 12px;
+  margin-top: 25px;
+  border: 1px solid #1e4585;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35);
+}
+
+.no-holdings p:first-child {
+  font-size: 1.2rem;
+  color: #ffffff;
   margin-bottom: 15px;
+  font-weight: 500;
 }
 
-.investment-tips ul {
-  margin: 0;
-  padding-left: 20px;
-}
-
-.investment-tips li {
-  color: #e0e0e0;
-  margin-bottom: 10px;
-  line-height: 1.5;
-  padding-left: 5px;
-}
-
-.investment-tips li:last-child {
-  margin-bottom: 0;
+.no-holdings p:last-child {
+  font-size: 0.95rem;
+  color: #b9d5f7;
+  font-style: italic;
 }
