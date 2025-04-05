@@ -5,11 +5,11 @@ const companies = [
     id: 1,
     name: '알리빠바 电子商务',
     namePinyin: 'Ālǐ bābā diànzǐ shāngwù',
-    logo: 'https://via.placeholder.com/80x80?text=알리빠바',
+    logo: 'assets/images/logos/alibaba.png',
     ceo: {
-      name: '마윤 马云',
+      name: '马云',
       namePinyin: 'Mǎ Yún',
-      image: 'https://via.placeholder.com/60x60?text=마윤',
+      image: 'assets/images/ceos/mayun.png',
     },
     description: '중국 최대의 전자상거래 플랫폼 회사입니다.',
     descriptionPinyin: 'Zhōngguó zuìdà de diànzǐ shāngwù píngtái gōngsī.',
@@ -25,11 +25,11 @@ const companies = [
     id: 2,
     name: '징똥 京冻',
     namePinyin: 'Jīng dòng',
-    logo: 'https://via.placeholder.com/80x80?text=징똥',
+    logo: 'assets/images/logos/jingdong.png',
     ceo: {
       name: '리우치앙동 刘强东',
       namePinyin: 'Liú Qiángdōng',
-      image: 'https://via.placeholder.com/60x60?text=리우치앙동',
+      image: 'assets/images/ceos/liuyangdong.png',
     },
     description: '중국의 주요 인터넷 소매업체로 전자제품에 특화되어 있습니다.',
     descriptionPinyin:
@@ -44,13 +44,13 @@ const companies = [
   },
   {
     id: 3,
-    name: '모모구 蘑蘑购',
-    namePinyin: 'Mó mó gòu',
-    logo: 'https://via.placeholder.com/80x80?text=모모구',
+    name: '마마 玛玛',
+    namePinyin: 'Mǎmǎ',
+    logo: 'assets/images/logos/mama.png',
     ceo: {
-      name: '진핑판 金平凡',
-      namePinyin: 'Jīn Píngfán',
-      image: 'https://via.placeholder.com/60x60?text=진핑판',
+      name: '린치펑 林起风',
+      namePinyin: 'Lín Qǐfēng',
+      image: 'assets/images/ceos/linqifeng.png',
     },
     description:
       '대만 기반의 새로운 쇼핑 플랫폼으로 한정판 상품을 전문적으로 취급합니다.',
@@ -70,11 +70,11 @@ const companies = [
     id: 4,
     name: '웨이샷 微射',
     namePinyin: 'Wēi shè',
-    logo: 'https://via.placeholder.com/80x80?text=웨이샷',
+    logo: 'assets/images/logos/weishe.png',
     ceo: {
-      name: '마하텅 马哈腾',
-      namePinyin: 'Mǎ Hàténg',
-      image: 'https://via.placeholder.com/60x60?text=마하텅',
+      name: '마화펑 马化风',
+      namePinyin: 'Mǎ Huàfēng',
+      image: 'assets/images/ceos/mahuafeng.png',
     },
     description: '중국의 대표적인 소셜 메시징 및 미디어 플랫폼입니다.',
     descriptionPinyin:
@@ -91,11 +91,11 @@ const companies = [
     id: 5,
     name: '더우인 抖音',
     namePinyin: 'Dǒu yīn',
-    logo: 'https://via.placeholder.com/80x80?text=더우인',
+    logo: 'assets/images/logos/douyin.png',
     ceo: {
-      name: '장이밍 张一鸣',
+      name: '장이밍 张一明',
       namePinyin: 'Zhāng Yīmíng',
-      image: 'https://via.placeholder.com/60x60?text=장이밍',
+      image: 'assets/images/ceos/zhangyiming.png',
     },
     description: '짧은 동영상 공유 플랫폼으로 젊은 층에게 인기가 많습니다.',
     descriptionPinyin:
@@ -112,11 +112,11 @@ const companies = [
     id: 6,
     name: '웨이부 微步',
     namePinyin: 'Wēi bù',
-    logo: 'https://via.placeholder.com/80x80?text=웨이부',
+    logo: 'assets/images/logos/weibu.png',
     ceo: {
-      name: '왕가오슈 王高树',
-      namePinyin: 'Wáng Gāoshù',
-      image: 'https://via.placeholder.com/60x60?text=왕가오슈',
+      name: '왕가풍 王高风',
+      namePinyin: 'Wáng Gāofēng',
+      image: 'assets/images/ceos/wanggaofeng.png',
     },
     description:
       '대중적인 마이크로블로깅 서비스로 뉴스와 트렌드를 빠르게 공유합니다.',
@@ -136,11 +136,11 @@ const companies = [
     id: 7,
     name: '샤오니 小你',
     namePinyin: 'Xiǎo nǐ',
-    logo: 'https://via.placeholder.com/80x80?text=샤오니',
+    logo: 'assets/images/logos/xiaoni.png',
     ceo: {
       name: '레이쿤 雷坤',
       namePinyin: 'Léi Kūn',
-      image: 'https://via.placeholder.com/60x60?text=레이쿤',
+      image: 'assets/images/ceos/leikun.png',
     },
     description: '스마트폰과 가전제품을 생산하는 혁신적인 기술 회사입니다.',
     descriptionPinyin:
@@ -157,11 +157,11 @@ const companies = [
     id: 8,
     name: '화이웨이 華爲',
     namePinyin: 'Huá wéi',
-    logo: 'https://via.placeholder.com/80x80?text=화이웨이',
+    logo: 'assets/images/logos/huawei.png',
     ceo: {
       name: '렌정페이 任正非',
       namePinyin: 'Rèn Zhèngfēi',
-      image: 'https://via.placeholder.com/60x60?text=렌정페이',
+      image: 'assets/images/ceos/renzhengfei.png',
     },
     description: '통신 장비와 고급 스마트폰을 제조하는 글로벌 기술 회사입니다.',
     descriptionPinyin:
