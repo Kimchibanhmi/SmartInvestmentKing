@@ -19,7 +19,12 @@ function initGame() {
   // 게임 상태 초기화
   gameState.day = 1;
   gameState.money = 100;
+  gameState.initialMoney = 100;
+
+  // 포트폴리오 객체 확실히 초기화
   gameState.portfolio = {};
+  console.log('게임 초기화: 포트폴리오 초기화됨');
+
   gameState.gameOver = false;
 
   // 회사 주가 초기화
@@ -113,9 +118,9 @@ function showCompanyDetail(company) {
   detailContent.innerHTML = `
     <div class="company-detail-container">
       <!-- 헤더 섹션 - 로고와 회사명 -->
-      <div class="company-header">
+        <div class="company-header">
         <div class="logo-container">
-          <img src="${company.logo}" alt="${
+            <img src="${company.logo}" alt="${
     company.name
   } 로고" class="company-logo clickable-image" 
             onerror="this.onerror=null; this.src='https://via.placeholder.com/80x80?text=${encodeURIComponent(
@@ -123,16 +128,16 @@ function showCompanyDetail(company) {
             )}'">
         </div>
         <div class="company-title">
-          <h2>${company.name}</h2>
-          <p class="pinyin">${company.namePinyin}</p>
+                <h2>${company.name}</h2>
+                <p class="pinyin">${company.namePinyin}</p>
           <span class="industry-badge">${company.industry}</span>
+            </div>
         </div>
-      </div>
-      
+        
       <!-- CEO 섹션 -->
       <div class="ceo-section">
         <div class="ceo-image-container">
-          <img src="${company.ceo.image}" alt="${
+            <img src="${company.ceo.image}" alt="${
     company.ceo.name
   }" class="ceo-image clickable-image" 
             onerror="this.onerror=null; this.src='https://via.placeholder.com/60x60?text=${encodeURIComponent(
@@ -142,41 +147,41 @@ function showCompanyDetail(company) {
         <div class="ceo-info">
           <h3>CEO</h3>
           <p class="ceo-name">${company.ceo.name}</p>
-          <p class="pinyin">${company.ceo.namePinyin}</p>
+                <p class="pinyin">${company.ceo.namePinyin}</p>
+            </div>
         </div>
-      </div>
-      
+        
       <!-- 회사 소개 섹션 -->
       <div class="company-description-section">
         <h3>회사 소개</h3>
-        <p>${company.description}</p>
-        <p class="pinyin">${company.descriptionPinyin}</p>
-      </div>
-      
+            <p>${company.description}</p>
+            <p class="pinyin">${company.descriptionPinyin}</p>
+        </div>
+        
       <!-- 제품 및 서비스 섹션 -->
       <div class="products-services-container">
         <div class="products-section">
-          <h3>주요 제품</h3>
+            <h3>주요 제품</h3>
           <div class="item-list">
-            ${company.products
-              .map((product) => `<div class="item">${product}</div>`)
-              .join('')}
+                ${company.products
+                  .map((product) => `<div class="item">${product}</div>`)
+                  .join('')}
           </div>
         </div>
         
         <div class="services-section">
-          <h3>주요 서비스</h3>
+            <h3>주요 서비스</h3>
           <div class="item-list">
-            ${company.services
-              .map((service) => `<div class="item">${service}</div>`)
-              .join('')}
+                ${company.services
+                  .map((service) => `<div class="item">${service}</div>`)
+                  .join('')}
           </div>
         </div>
-      </div>
-      
+        </div>
+        
       <!-- 주가 정보 섹션 -->
       <div class="stock-info-section">
-        <h3>주가 정보</h3>
+            <h3>주가 정보</h3>
         <div class="stock-price-container">
           <div class="current-price-box">
             <span class="label">현재 주가:</span>
@@ -189,7 +194,7 @@ function showCompanyDetail(company) {
             <span class="holding-amount">${ownedShares}주 (${holdingValue.toFixed(
     2
   )} 위안)</span>
-          </div>
+            </div>
         </div>
         
         <div class="price-chart clickable-chart">
@@ -202,18 +207,18 @@ function showCompanyDetail(company) {
       
       <!-- 주식 거래 섹션 -->
       <div class="stock-trade-section">
-        <div class="buy-section">
-          <h3>주식 매수</h3>
+            <div class="buy-section">
+                <h3>주식 매수</h3>
           <div class="trade-controls">
             <input type="number" id="buyQuantity" min="1" value="1" class="quantity-input">
-            <button id="confirmBuyBtn" data-company-id="${
-              company.id
-            }" class="trade-button buy-button">매수 확인</button>
+                <button id="confirmBuyBtn" data-company-id="${
+                  company.id
+                }" class="trade-button buy-button">매수 확인</button>
           </div>
-        </div>
-        
-        <div class="sell-section">
-          <h3>주식 매도</h3>
+            </div>
+            
+            <div class="sell-section">
+                <h3>주식 매도</h3>
           <div class="trade-controls">
             <input type="number" id="sellQuantity" min="1" value="1" max="${ownedShares}" 
               ${ownedShares > 0 ? '' : 'disabled'} class="quantity-input">
@@ -223,9 +228,9 @@ function showCompanyDetail(company) {
               } class="trade-button sell-button">매도 확인</button>
           </div>
         </div>
-      </div>
-    </div>
-  `;
+            </div>
+        </div>
+    `;
 
   // 매수/매도 버튼 이벤트 리스너 설정
   document
@@ -356,76 +361,210 @@ function showNewsPopup() {
 
 // 포트폴리오 팝업 표시
 function showPortfolioPopup() {
+  const portfolioPopup = document.getElementById('portfolioPopup');
   const portfolioContent = document.getElementById('portfolioContent');
 
-  // 총 자산 계산
-  let totalValue = gameState.money;
-  const holdings = [];
+  // 디버깅: 포트폴리오 데이터 확인
+  console.log(
+    '포트폴리오 팝업 표시 - 현재 포트폴리오 데이터:',
+    gameState.portfolio
+  );
 
-  for (const companyId in gameState.portfolio) {
-    const company = companies.find((c) => c.id === parseInt(companyId));
-    const quantity = gameState.portfolio[companyId];
-    const value = company.currentPrice * quantity;
-    totalValue += value;
-
-    holdings.push({
-      company,
-      quantity,
-      value,
-      pricePerShare: company.currentPrice,
-    });
+  // gameState.portfolio가 없으면 초기화
+  if (!gameState.portfolio) {
+    gameState.portfolio = {};
+    console.log('포트폴리오 객체 초기화');
   }
 
-  // 포트폴리오 내용 생성
-  portfolioContent.innerHTML = `
-    <div class="portfolio-summary">
-      <h3>총 자산: ${totalValue.toFixed(2)} 위안</h3>
-      <p>현금: ${gameState.money.toFixed(2)} 위안</p>
-      <p>주식 가치: ${(totalValue - gameState.money).toFixed(2)} 위안</p>
-    </div>
-    
-    <div class="portfolio-holdings">
-      <h3>보유 주식</h3>
-      ${holdings.length > 0 ? '' : '<p>현재 보유한 주식이 없습니다.</p>'}
-      <ul class="holdings-list">
-        ${holdings
-          .map(
-            (holding) => `
-          <li class="holding-item" data-company-id="${holding.company.id}">
-            <div class="holding-info">
-              <span class="company-name">${holding.company.name}</span>
-              <span class="pinyin">${holding.company.namePinyin}</span>
-              <span class="quantity">${holding.quantity}주</span>
-              <span class="price">${holding.pricePerShare.toFixed(
-                2
-              )} 위안/주</span>
-              <span class="value">${holding.value.toFixed(2)} 위안</span>
+  // 총 자산 계산
+  let totalAssetValue = gameState.money;
+  let totalStockValue = 0;
+  let totalInvestment = 0;
+  let holdingsHTML = '';
+  let hasHoldings = false;
+
+  // 각 보유 주식에 대한 정보 생성
+  for (const companyIdStr in gameState.portfolio) {
+    const holding = gameState.portfolio[companyIdStr];
+
+    console.log(`회사 ID ${companyIdStr} 확인 중:`, holding);
+
+    // 수량이 0보다 큰지 확인
+    if (holding && holding.quantity > 0) {
+      // 문자열 ID를 숫자로 변환
+      const companyId = parseInt(companyIdStr);
+      const company = companies.find((c) => c.id === companyId);
+
+      if (!company) {
+        console.error(`회사를 찾을 수 없음: ID ${companyId}`);
+        continue;
+      }
+
+      console.log(`회사 찾음: ${company.name}, 보유 수량: ${holding.quantity}`);
+      hasHoldings = true;
+
+      // 현재 가치 계산
+      const currentValue = company.currentPrice * holding.quantity;
+      totalStockValue += currentValue;
+      totalAssetValue += currentValue;
+
+      // 매수 금액 (투자 비용)
+      const investmentCost = holding.avgPrice * holding.quantity;
+      totalInvestment += investmentCost;
+
+      // 평가 손익 계산
+      const profitLoss = currentValue - investmentCost;
+      const profitLossPercent = (profitLoss / investmentCost) * 100;
+
+      // 손익이 0일 때 중립 클래스 적용
+      let profitLossClass = 'neutral';
+      let profitLossSymbol = '';
+
+      if (profitLoss > 0) {
+        profitLossClass = 'profit';
+        profitLossSymbol = '▲';
+      } else if (profitLoss < 0) {
+        profitLossClass = 'loss';
+        profitLossSymbol = '▼';
+      }
+
+      holdingsHTML += `
+        <tr class="holding-row" data-company-id="${company.id}">
+          <td class="align-left">
+            <div class="company-info">
+              <img src="${company.logo}" alt="${
+        company.name
+      }" class="company-logo-small">
+              <span>${company.name}</span>
             </div>
-          </li>
-        `
-          )
-          .join('')}
-      </ul>
+          </td>
+          <td class="align-right">${holding.quantity.toLocaleString()}주</td>
+          <td class="align-right">${holding.avgPrice.toFixed(2)} 위안</td>
+          <td class="align-right">${company.currentPrice.toFixed(2)} 위안</td>
+          <td class="align-right">${investmentCost.toFixed(2)} 위안</td>
+          <td class="align-right">${currentValue.toFixed(2)} 위안</td>
+          <td class="align-right ${profitLossClass}">${profitLoss.toFixed(
+        2
+      )} 위안</td>
+          <td class="align-right ${profitLossClass}">${profitLossSymbol} ${Math.abs(
+        profitLossPercent
+      ).toFixed(2)}%</td>
+        </tr>
+      `;
+    }
+  }
+
+  console.log('보유 주식 있음:', hasHoldings);
+
+  // 총 평가 손익 계산
+  const totalProfitLoss = totalStockValue - totalInvestment;
+  const totalProfitLossPercent =
+    totalInvestment > 0 ? (totalProfitLoss / totalInvestment) * 100 : 0;
+
+  // 총 손익이 0일 때 중립 클래스 적용
+  let totalProfitLossClass = 'neutral';
+  if (totalProfitLoss > 0) {
+    totalProfitLossClass = 'profit';
+  } else if (totalProfitLoss < 0) {
+    totalProfitLossClass = 'loss';
+  }
+
+  // 자산 요약 HTML 생성
+  const assetSummaryHTML = `
+    <div class="asset-summary">
+      <div class="summary-title">자산 요약</div>
+      <div class="summary-grid">
+        <div class="summary-item">
+          <div class="item-label">현금</div>
+          <div class="item-value">${gameState.money
+            .toFixed(2)
+            .toLocaleString()} 위안</div>
+        </div>
+        <div class="summary-item">
+          <div class="item-label">주식 가치</div>
+          <div class="item-value">${totalStockValue
+            .toFixed(2)
+            .toLocaleString()} 위안</div>
+        </div>
+        <div class="summary-item">
+          <div class="item-label">총 투자비용</div>
+          <div class="item-value">${totalInvestment
+            .toFixed(2)
+            .toLocaleString()} 위안</div>
+        </div>
+        <div class="summary-item ${totalProfitLossClass}">
+          <div class="item-label">총 평가손익</div>
+          <div class="item-value">${totalProfitLoss
+            .toFixed(2)
+            .toLocaleString()} 위안 (${totalProfitLossPercent.toFixed(
+    2
+  )}%)</div>
+        </div>
+        <div class="summary-item total-assets">
+          <div class="item-label">총 자산</div>
+          <div class="item-value">${totalAssetValue
+            .toFixed(2)
+            .toLocaleString()} 위안</div>
+        </div>
+      </div>
     </div>
   `;
 
-  // 보유 주식 항목 클릭 이벤트 추가
-  document.querySelectorAll('.holding-item').forEach((item) => {
-    item.addEventListener('click', function () {
+  // 포트폴리오 내용 설정
+  if (hasHoldings) {
+    console.log('보유 주식 테이블 생성');
+    portfolioContent.innerHTML = `
+      ${assetSummaryHTML}
+      <div class="holdings-section">
+        <div class="section-title">보유 주식</div>
+        <div class="table-container">
+          <table class="holdings-table">
+            <thead>
+              <tr>
+                <th class="align-left">종목명</th>
+                <th class="align-right">보유수량</th>
+                <th class="align-right">매수단가</th>
+                <th class="align-right">현재가</th>
+                <th class="align-right">매수금액</th>
+                <th class="align-right">평가금액</th>
+                <th class="align-right">평가손익</th>
+                <th class="align-right">수익률</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${holdingsHTML}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    `;
+  } else {
+    console.log('보유 주식이 없음');
+    portfolioContent.innerHTML = `
+      ${assetSummaryHTML}
+      <div class="no-holdings">
+        <p>현재 보유 중인 주식이 없습니다.</p>
+        <p>시장에서 주식을 매수해보세요!</p>
+        </div>
+    `;
+  }
+
+  // 보유 주식 항목 클릭 이벤트 설정
+  const holdingRows = document.querySelectorAll('.holding-row');
+  holdingRows.forEach((row) => {
+    row.addEventListener('click', function () {
       const companyId = parseInt(this.getAttribute('data-company-id'));
       const company = companies.find((c) => c.id === companyId);
 
-      // 포트폴리오에서 왔음을 표시
-      cameFromPortfolio = true;
+      // 회사 상세 정보 표시
+      showCompanyDetail(company);
 
       // 포트폴리오 팝업 닫기
       portfolioPopup.classList.add('hidden');
-
-      // 회사 상세 정보 팝업 표시
-      showCompanyDetail(company);
     });
   });
 
+  // 팝업 표시
   portfolioPopup.classList.remove('hidden');
 }
 
