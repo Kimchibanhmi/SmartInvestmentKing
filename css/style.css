@@ -41,10 +41,24 @@ body {
 
 .close-btn {
   position: absolute;
-  top: 10px;
+  top: 15px;
   right: 15px;
-  font-size: 1.5rem;
+  width: 30px;
+  height: 30px;
+  background-color: rgba(0, 0, 0, 0.3);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
   cursor: pointer;
+  z-index: 10;
+  transition: background-color 0.2s;
+}
+
+.close-btn:hover {
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 /* 헤더 스타일 */
@@ -437,4 +451,380 @@ input[type='number'] {
     grid-template-columns: 1fr;
     gap: 5px;
   }
+}
+
+/* 회사 상세 팝업 스타일 개선 */
+#companyDetailPopup .popup-content {
+  max-width: 700px;
+  padding: 0;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.company-detail-container {
+  padding: 0;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+/* 헤더 섹션 */
+.company-header {
+  display: flex;
+  align-items: center;
+  background: linear-gradient(135deg, #1e88e5, #0d47a1);
+  color: white;
+  padding: 20px;
+}
+
+.logo-container {
+  margin-right: 20px;
+}
+
+.company-logo {
+  width: 80px;
+  height: 80px;
+  border-radius: 12px;
+  object-fit: cover;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.company-title h2 {
+  margin: 0 0 5px 0;
+  font-size: 1.8rem;
+}
+
+.industry-badge {
+  display: inline-block;
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  margin-top: 8px;
+}
+
+/* CEO 섹션 */
+.ceo-section {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.ceo-image-container {
+  margin-right: 15px;
+}
+
+.ceo-image {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.ceo-info h3 {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #616161;
+}
+
+.ceo-name {
+  margin: 4px 0;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+/* 회사 소개 섹션 */
+.company-description-section {
+  padding: 20px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.company-description-section h3 {
+  margin-top: 0;
+  color: #1e88e5;
+  font-size: 1.2rem;
+}
+
+.company-description-section p {
+  margin: 10px 0;
+  line-height: 1.6;
+}
+
+/* 제품 및 서비스 섹션 */
+.products-services-container {
+  display: flex;
+  padding: 20px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.products-section,
+.services-section {
+  flex: 1;
+}
+
+.products-section {
+  margin-right: 10px;
+}
+
+.products-services-container h3 {
+  margin-top: 0;
+  color: #1e88e5;
+  font-size: 1.2rem;
+}
+
+.item-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.item {
+  background-color: #e3f2fd;
+  padding: 8px 12px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  color: #0d47a1;
+}
+
+/* 주가 정보 섹션 */
+.stock-info-section {
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.stock-info-section h3 {
+  margin-top: 0;
+  color: #1e88e5;
+  font-size: 1.2rem;
+}
+
+.stock-price-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.current-price-box,
+.holdings-box {
+  background-color: white;
+  padding: 12px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  flex: 1;
+}
+
+.current-price-box {
+  margin-right: 10px;
+}
+
+.label {
+  display: block;
+  font-size: 0.8rem;
+  color: #757575;
+  margin-bottom: 5px;
+}
+
+.current-price {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #1e88e5;
+}
+
+.holding-amount {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.price-chart {
+  background-color: white;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  margin-top: 15px;
+  max-height: 200px;
+}
+
+.price-chart h4 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  color: #616161;
+  font-size: 1rem;
+}
+
+/* 주식 거래 섹션 */
+.stock-trade-section {
+  display: flex;
+  padding: 20px;
+}
+
+.buy-section,
+.sell-section {
+  flex: 1;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.buy-section {
+  background-color: #e8f5e9;
+  margin-right: 10px;
+}
+
+.sell-section {
+  background-color: #ffebee;
+}
+
+.stock-trade-section h3 {
+  margin-top: 0;
+  font-size: 1.1rem;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.trade-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.quantity-input {
+  width: 80px;
+  padding: 8px;
+  border: 1px solid #bdbdbd;
+  border-radius: 4px;
+  text-align: center;
+  margin-right: 10px;
+}
+
+.trade-button {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.buy-button {
+  background-color: #43a047;
+}
+
+.buy-button:hover {
+  background-color: #2e7d32;
+}
+
+.sell-button {
+  background-color: #e53935;
+}
+
+.sell-button:hover {
+  background-color: #c62828;
+}
+
+.trade-button:disabled {
+  background-color: #bdbdbd;
+  cursor: not-allowed;
+}
+
+/* 병음 스타일 */
+.pinyin {
+  color: #757575;
+  font-style: italic;
+  margin-bottom: 5px;
+}
+
+/* 모바일 대응 */
+@media (max-width: 768px) {
+  .company-header,
+  .ceo-section,
+  .products-services-container,
+  .stock-price-container,
+  .stock-trade-section {
+    flex-direction: column;
+  }
+
+  .logo-container,
+  .ceo-image-container,
+  .products-section,
+  .current-price-box,
+  .buy-section {
+    margin-right: 0;
+    margin-bottom: 15px;
+  }
+
+  .stock-info-section,
+  .company-description-section,
+  .products-services-container,
+  .stock-trade-section {
+    padding: 15px;
+  }
+
+  .company-title h2 {
+    font-size: 1.5rem;
+  }
+}
+
+/* 매수/매도 결과 메시지 스타일 */
+.trade-result-message {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 15px 25px;
+  border-radius: 10px;
+  z-index: 2100;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  animation: fadeInOut 2s ease-in-out forwards;
+}
+
+.trade-result-message.success {
+  background-color: rgba(46, 125, 50, 0.9);
+}
+
+.trade-result-message.error {
+  background-color: rgba(198, 40, 40, 0.9);
+}
+
+.trade-result-message.sell {
+  background-color: rgba(198, 40, 40, 0.9);
+}
+
+.trade-result-message.hidden {
+  display: none;
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -70px);
+  }
+  20% {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+  80% {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -70px);
+  }
+}
+
+.message-content {
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+#stockChart {
+  max-height: 150px !important;
 }
