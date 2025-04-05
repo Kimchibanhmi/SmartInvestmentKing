@@ -117,7 +117,7 @@ function showCompanyDetail(company) {
         <div class="logo-container">
           <img src="${company.logo}" alt="${
     company.name
-  } 로고" class="company-logo" 
+  } 로고" class="company-logo clickable-image" 
             onerror="this.onerror=null; this.src='https://via.placeholder.com/80x80?text=${encodeURIComponent(
               company.name
             )}'">
@@ -129,12 +129,12 @@ function showCompanyDetail(company) {
         </div>
       </div>
       
-      <!-- CEO 정보 섹션 -->
+      <!-- CEO 섹션 -->
       <div class="ceo-section">
         <div class="ceo-image-container">
           <img src="${company.ceo.image}" alt="${
     company.ceo.name
-  }" class="ceo-image" 
+  }" class="ceo-image clickable-image" 
             onerror="this.onerror=null; this.src='https://via.placeholder.com/60x60?text=${encodeURIComponent(
               company.ceo.name
             )}'">
@@ -192,9 +192,11 @@ function showCompanyDetail(company) {
           </div>
         </div>
         
-        <div class="price-chart">
+        <div class="price-chart clickable-chart">
           <h4>주가 변동</h4>
-          <canvas id="stockChart" width="100%" height="180"></canvas>
+          <div style="height: 150px;">
+            <canvas id="stockChart"></canvas>
+          </div>
         </div>
       </div>
       
@@ -206,7 +208,7 @@ function showCompanyDetail(company) {
             <input type="number" id="buyQuantity" min="1" value="1" class="quantity-input">
             <button id="confirmBuyBtn" data-company-id="${
               company.id
-            }" class="trade-button buy-button">매수</button>
+            }" class="trade-button buy-button">매수 확인</button>
           </div>
         </div>
         
@@ -218,17 +220,18 @@ function showCompanyDetail(company) {
             <button id="confirmSellBtn" data-company-id="${company.id}" 
               ${
                 ownedShares > 0 ? '' : 'disabled'
-              } class="trade-button sell-button">매도</button>
+              } class="trade-button sell-button">매도 확인</button>
           </div>
         </div>
       </div>
     </div>
   `;
 
-  // 매수/매도 버튼 이벤트 리스너 설정은 동일하게 유지
+  // 매수/매도 버튼 이벤트 리스너 설정
   document
     .getElementById('confirmBuyBtn')
     .addEventListener('click', function () {
+      // 기존 코드 유지
       const quantity = parseInt(document.getElementById('buyQuantity').value);
       const companyId = parseInt(this.getAttribute('data-company-id'));
       buyStock(companyId, quantity);
@@ -238,13 +241,31 @@ function showCompanyDetail(company) {
   document
     .getElementById('confirmSellBtn')
     .addEventListener('click', function () {
+      // 기존 코드 유지
       const quantity = parseInt(document.getElementById('sellQuantity').value);
       const companyId = parseInt(this.getAttribute('data-company-id'));
       sellStock(companyId, quantity);
       showCompanyDetail(company); // 정보 새로고침
     });
 
-  // 주가 차트 렌더링 (기존 코드 유지)
+  // 이미지 클릭 이벤트 설정
+  const logoImage = detailContent.querySelector('.company-logo');
+  logoImage.addEventListener('click', function () {
+    showImageZoom(company.logo, `${company.name} 로고`);
+  });
+
+  const ceoImage = detailContent.querySelector('.ceo-image');
+  ceoImage.addEventListener('click', function () {
+    showImageZoom(company.ceo.image, `CEO: ${company.ceo.name}`);
+  });
+
+  // 차트 클릭 이벤트 설정
+  const chartElement = detailContent.querySelector('.price-chart');
+  chartElement.addEventListener('click', function () {
+    showChartZoom(company);
+  });
+
+  // 주가 차트 렌더링
   renderStockChart(company);
 
   // 팝업 표시
@@ -443,6 +464,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // 페이지 로드 시 시작 팝업 표시
   startPopup.classList.remove('hidden');
+
+  // 확대 팝업 닫기 버튼 설정
+  document.querySelectorAll('.zoom-popup .close-btn').forEach((btn) => {
+    btn.addEventListener('click', function () {
+      this.closest('.zoom-popup').classList.add('hidden');
+    });
+  });
 });
 
 // 사용자 알림 메시지 표시 함수
@@ -499,4 +527,161 @@ function showTradeResultMessage(message, type = 'default') {
   setTimeout(() => {
     messageElement.classList.add('hidden');
   }, 700);
+}
+
+// 이미지 확대 팝업 표시 함수
+function showImageZoom(imageSrc, caption) {
+  const zoomedImage = document.getElementById('zoomedImage');
+  const zoomCaption = document.getElementById('zoomImageCaption');
+  const imageZoomPopup = document.getElementById('imageZoomPopup');
+
+  // 이미지 소스 및 캡션 설정
+  zoomedImage.src = imageSrc;
+  zoomCaption.textContent = caption || '';
+
+  // 팝업 표시
+  imageZoomPopup.classList.remove('hidden');
+
+  // 팝업 클릭 시 닫기 (이미지 외 영역 클릭)
+  imageZoomPopup.addEventListener('click', function (e) {
+    if (e.target === imageZoomPopup) {
+      imageZoomPopup.classList.add('hidden');
+    }
+  });
+
+  // 닫기 버튼 이벤트
+  const closeBtn = imageZoomPopup.querySelector('.close-btn');
+  closeBtn.addEventListener('click', function () {
+    imageZoomPopup.classList.add('hidden');
+  });
+}
+
+// 차트 확대 팝업 표시 함수
+function showChartZoom(company) {
+  const chartZoomPopup = document.getElementById('chartZoomPopup');
+  const chartZoomTitle = document.getElementById('chartZoomTitle');
+
+  // 차트 제목 설정
+  chartZoomTitle.textContent = `${company.name} 주가 변동`;
+
+  // 팝업 표시
+  chartZoomPopup.classList.remove('hidden');
+
+  // 확대된 차트 렌더링
+  renderZoomedStockChart(company);
+
+  // 팝업 클릭 시 닫기 (차트 외 영역 클릭)
+  chartZoomPopup.addEventListener('click', function (e) {
+    if (e.target === chartZoomPopup) {
+      chartZoomPopup.classList.add('hidden');
+    }
+  });
+
+  // 닫기 버튼 이벤트
+  const closeBtn = chartZoomPopup.querySelector('.close-btn');
+  closeBtn.addEventListener('click', function () {
+    chartZoomPopup.classList.add('hidden');
+  });
+}
+
+// 확대된 차트 렌더링 함수
+function renderZoomedStockChart(company) {
+  const ctx = document.getElementById('zoomedStockChart').getContext('2d');
+
+  // 이전 차트 인스턴스가 있는지 확인
+  if (window.zoomedStockChart instanceof Chart) {
+    window.zoomedStockChart.destroy();
+  }
+
+  // 차트 데이터 준비
+  const labels = Array.from(
+    { length: company.priceHistory.length },
+    (_, i) => `${gameState.day - company.priceHistory.length + i + 1}일차`
+  );
+
+  // 첫날은 항상 1일차로 표시
+  if (labels[0] <= 0) {
+    labels[0] = '1일차';
+  }
+
+  // 확대된 차트 생성
+  window.zoomedStockChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: labels,
+      datasets: [
+        {
+          label: '주가 (위안)',
+          data: company.priceHistory,
+          borderColor: '#1e88e5',
+          backgroundColor: 'rgba(30, 136, 229, 0.1)',
+          borderWidth: 3,
+          tension: 0.2,
+          fill: true,
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          position: 'top',
+          labels: {
+            font: {
+              size: 14,
+            },
+          },
+        },
+        tooltip: {
+          bodyFont: {
+            size: 14,
+          },
+          titleFont: {
+            size: 16,
+          },
+        },
+      },
+      scales: {
+        y: {
+          beginAtZero: false,
+          ticks: {
+            font: {
+              size: 12,
+            },
+            callback: function (value) {
+              return value.toFixed(2) + ' 위안';
+            },
+          },
+          title: {
+            display: true,
+            text: '주가 (위안)',
+            font: {
+              size: 14,
+            },
+          },
+        },
+        x: {
+          ticks: {
+            font: {
+              size: 12,
+            },
+          },
+          title: {
+            display: true,
+            text: '일차',
+            font: {
+              size: 14,
+            },
+          },
+        },
+      },
+      elements: {
+        point: {
+          radius: 4,
+          hoverRadius: 6,
+        },
+      },
+    },
+  });
 }
