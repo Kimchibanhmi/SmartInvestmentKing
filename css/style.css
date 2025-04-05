@@ -1,0 +1,440 @@
+/* 기본 스타일 */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Noto Sans KR', 'Noto Sans SC', sans-serif;
+}
+
+body {
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* 팝업 스타일 */
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup-content {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 10px;
+  max-width: 80%;
+  max-height: 80%;
+  overflow-y: auto;
+  position: relative;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* 헤더 스타일 */
+header {
+  background-color: #e53935;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+}
+
+.game-info {
+  display: flex;
+  justify-content: space-around;
+  margin: 1rem 0;
+}
+
+.game-controls {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  background-color: #1e88e5;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #0d47a1;
+}
+
+button:disabled {
+  background-color: #b0bec5;
+  cursor: not-allowed;
+}
+
+/* 회사 목록 스타일 */
+.companies-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.company-card {
+  background-color: white;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.company-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+}
+
+.pinyin {
+  color: #757575;
+  font-style: italic;
+  margin-bottom: 0.5rem;
+}
+
+.industry {
+  font-size: 0.9rem;
+  background-color: #e0e0e0;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  display: inline-block;
+  margin-bottom: 0.5rem;
+}
+
+.price {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.price-up {
+  color: #2e7d32;
+}
+
+.price-down {
+  color: #c62828;
+}
+
+/* 회사 상세 정보 스타일 */
+.company-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.company-logo {
+  width: 80px;
+  height: 80px;
+  margin-right: 1rem;
+  object-fit: contain;
+}
+
+.ceo-info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.ceo-image {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin-right: 1rem;
+  object-fit: cover;
+}
+
+.company-description,
+.company-products,
+.company-services {
+  margin-bottom: 1rem;
+}
+
+.company-description p {
+  line-height: 1.5;
+}
+
+.stock-info {
+  background-color: #f5f5f5;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+}
+
+.current-price {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #1e88e5;
+}
+
+.price-chart {
+  margin-top: 1rem;
+}
+
+.stock-trade {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.buy-section,
+.sell-section {
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.buy-section {
+  background-color: #e8f5e9;
+}
+
+.sell-section {
+  background-color: #ffebee;
+}
+
+input[type='number'] {
+  width: 80px;
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+  border: 1px solid #bdbdbd;
+  border-radius: 4px;
+}
+
+/* 뉴스 팝업 스타일 */
+.news-item {
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background-color: #fff;
+  border-left: 4px solid #1e88e5;
+  border-radius: 4px;
+}
+
+.news-item h3 {
+  margin-bottom: 0.5rem;
+  color: #0d47a1;
+}
+
+/* 포트폴리오 스타일 */
+.portfolio-summary {
+  background-color: #e8f5e9;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+}
+
+.portfolio-holdings ul {
+  list-style: none;
+}
+
+.holding-info {
+  display: grid;
+  grid-template-columns: 2fr 2fr 1fr 1fr 1fr;
+  padding: 0.8rem;
+  border-bottom: 1px solid #e0e0e0;
+  align-items: center;
+}
+
+.company-name {
+  font-weight: bold;
+}
+
+/* 결과 팝업 스타일 */
+#resultPopup .popup-content {
+  text-align: center;
+  padding: 3rem;
+}
+
+#resultTitle {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #1e88e5;
+}
+
+#resultMessage {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+#restartGameBtn {
+  padding: 0.8rem 1.5rem;
+  font-size: 1.1rem;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .popup-content {
+    max-width: 95%;
+  }
+
+  .companies-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+
+  .stock-trade {
+    grid-template-columns: 1fr;
+  }
+
+  .holding-info {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+}
+
+/* 시작 팝업 스타일 수정 */
+#startPopup .popup-content {
+  text-align: center;
+  padding: 3rem 2rem;
+  max-width: 500px;
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+#startPopup h1 {
+  font-size: 2.5rem;
+  color: #e53935;
+  margin-bottom: 2rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+#startPopup p {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+  color: #555;
+}
+
+#startGameBtn {
+  margin-top: 2rem;
+  padding: 0.8rem 2rem;
+  font-size: 1.3rem;
+  background-color: #1e88e5;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+#startGameBtn:hover {
+  background-color: #0d47a1;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* 퍼센트 변화 스타일 */
+.percent-change {
+  font-size: 0.9rem;
+  margin-left: 8px;
+}
+
+/* 주가 차트 컨테이너 */
+.price-chart {
+  margin: 1.5rem 0;
+  padding: 1rem;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+/* 회사 카드 가격 표시 개선 */
+.company-card .price {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-top: 0.5rem;
+}
+
+/* 모바일 대응 */
+@media (max-width: 768px) {
+  .price-chart {
+    padding: 0.5rem;
+  }
+
+  .percent-change {
+    display: block;
+    margin-left: 0;
+    margin-top: 4px;
+  }
+}
+
+/* 알림 토스트 메시지 스타일 */
+.notification-toast {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  z-index: 2000;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.notification-toast.show {
+  animation: fadeInOut 2s ease-in-out;
+}
+
+.notification-toast.error {
+  background-color: rgba(198, 40, 40, 0.9);
+}
+
+/* 포트폴리오 보유 주식 항목 스타일 */
+.holdings-list {
+  list-style: none;
+  padding: 0;
+}
+
+.holding-item {
+  cursor: pointer;
+  padding: 10px;
+  margin-bottom: 8px;
+  border-radius: 8px;
+  background-color: #f5f5f5;
+  transition: all 0.2s ease;
+}
+
+.holding-item:hover {
+  background-color: #e0e0e0;
+  transform: translateY(-2px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.holding-info {
+  display: grid;
+  grid-template-columns: 2fr 2fr 1fr 1fr 1fr;
+  align-items: center;
+  gap: 10px;
+}
+
+@media (max-width: 768px) {
+  .holding-info {
+    grid-template-columns: 1fr;
+    gap: 5px;
+  }
+}

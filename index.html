@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>똑똑한 투자왕!</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!-- 시작 팝업 -->
+    <div id="startPopup" class="popup">
+      <div class="popup-content">
+        <h1>똑똑한 투자왕!</h1>
+        <p>30일동안 30개의 회사에 투자하여 수익률을 2배로 만들면 성공!</p>
+        <p>제작 : Dukimi, 전진아</p>
+        <button id="startGameBtn">게임 시작하기</button>
+      </div>
+    </div>
+
+    <!-- 메인 게임 화면 -->
+    <div id="gameScreen" class="hidden">
+      <header>
+        <h1>똑똑한 투자왕!</h1>
+        <div class="game-info">
+          <span id="dayCounter">1일차/30일차</span>
+          <span id="money">시드머니: 100 위안</span>
+        </div>
+        <div class="game-controls">
+          <button id="endTurnBtn">턴 종료</button>
+          <button id="portfolioBtn">나의 포트폴리오 확인</button>
+          <button id="newsBtn">오늘의 뉴스</button>
+        </div>
+      </header>
+
+      <main>
+        <div id="companiesList" class="companies-grid">
+          <!-- 회사 목록이 동적으로 추가됨 -->
+        </div>
+      </main>
+    </div>
+
+    <!-- 회사 상세 정보 팝업 -->
+    <div id="companyDetailPopup" class="popup hidden">
+      <div class="popup-content">
+        <span class="close-btn">&times;</span>
+        <div id="companyDetailContent"></div>
+      </div>
+    </div>
+
+    <!-- 뉴스 팝업 -->
+    <div id="newsPopup" class="popup hidden">
+      <div class="popup-content">
+        <span class="close-btn">&times;</span>
+        <h2>오늘의 뉴스</h2>
+        <div id="newsList"></div>
+      </div>
+    </div>
+
+    <!-- 포트폴리오 팝업 -->
+    <div id="portfolioPopup" class="popup hidden">
+      <div class="popup-content">
+        <span class="close-btn">&times;</span>
+        <h2>나의 포트폴리오</h2>
+        <div id="portfolioContent"></div>
+      </div>
+    </div>
+
+    <!-- 결과 팝업 -->
+    <div id="resultPopup" class="popup hidden">
+      <div class="popup-content">
+        <h2 id="resultTitle"></h2>
+        <p id="resultMessage"></p>
+        <button id="restartGameBtn">다시 시작하기</button>
+      </div>
+    </div>
+
+    <!-- 사용자 알림 메시지 -->
+    <div id="notificationToast" class="notification-toast hidden">
+      <div class="notification-content">
+        <span id="notificationMessage"></span>
+      </div>
+    </div>
+
+    <!-- Chart.js 추가 - 올바른 CDN 주소로 변경 -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.js"></script>
+
+    <!-- 스크립트 로드 -->
+    <script src="js/companies.js"></script>
+    <script src="js/news.js"></script>
+    <script src="js/gameLogic.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>
