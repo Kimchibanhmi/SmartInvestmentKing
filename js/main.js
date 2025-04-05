@@ -206,7 +206,7 @@ function showCompanyDetail(company) {
             <input type="number" id="buyQuantity" min="1" value="1" class="quantity-input">
             <button id="confirmBuyBtn" data-company-id="${
               company.id
-            }" class="trade-button buy-button">매수 확인</button>
+            }" class="trade-button buy-button">매수</button>
           </div>
         </div>
         
@@ -218,7 +218,7 @@ function showCompanyDetail(company) {
             <button id="confirmSellBtn" data-company-id="${company.id}" 
               ${
                 ownedShares > 0 ? '' : 'disabled'
-              } class="trade-button sell-button">매도 확인</button>
+              } class="trade-button sell-button">매도</button>
           </div>
         </div>
       </div>
