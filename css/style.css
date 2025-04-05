@@ -828,3 +828,106 @@ input[type='number'] {
 #stockChart {
   max-height: 150px !important;
 }
+
+/* 확대 팝업 스타일 */
+.zoom-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.zoom-content {
+  position: relative;
+  max-width: 90%;
+  max-height: 90%;
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  padding: 10px;
+}
+
+.zoom-content .close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  cursor: pointer;
+  z-index: 10;
+}
+
+#zoomedImage {
+  max-width: 100%;
+  max-height: 80vh;
+  display: block;
+  margin: 0 auto;
+}
+
+.zoom-caption {
+  text-align: center;
+  margin-top: 10px;
+  padding: 5px;
+  font-weight: bold;
+  color: #333;
+}
+
+.chart-zoom-content {
+  width: 90%;
+  max-width: 800px;
+  padding: 20px;
+}
+
+.chart-container {
+  width: 100%;
+  height: 60vh;
+  position: relative;
+}
+
+#chartZoomTitle {
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: #1e88e5;
+}
+
+/* 클릭 가능한 이미지와 차트 스타일 */
+.clickable-image {
+  cursor: zoom-in;
+  transition: transform 0.2s;
+}
+
+.clickable-image:hover {
+  transform: scale(1.05);
+}
+
+.clickable-chart {
+  cursor: zoom-in;
+  position: relative;
+}
+
+.clickable-chart:hover::after {
+  content: '차트 확대';
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+}
