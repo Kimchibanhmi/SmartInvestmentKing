@@ -95,12 +95,29 @@ function buyStock(companyId, quantity) {
     return false;
   }
 
-  const totalCost = company.currentPrice * quantityNum;
+  // 소수점 계산 오차를 방지하기 위해 소수점 두 자리까지 반올림
+  const totalCost = Math.round(company.currentPrice * quantityNum * 100) / 100;
 
-  if (totalCost > gameState.money) {
+  // 매우 작은 금액 차이 (0.01 이하)는 허용
+  if (totalCost > gameState.money + 0.01) {
     showTradeResultMessage('자금이 부족합니다!', 'error');
+    console.log(
+      `매수 실패: 필요 금액 ${totalCost}, 보유 금액 ${gameState.money}`
+    );
     return false;
   }
+
+  // 정확히 모든 금액을 사용하는 경우 처리 (부동소수점 오차 방지)
+  if (Math.abs(totalCost - gameState.money) < 0.01) {
+    // 0으로 설정 (작은 오차 무시)
+    gameState.money = 0;
+  } else {
+    // 정상적으로 자금 차감
+    gameState.money -= totalCost;
+  }
+
+  // 소수점 두 자리까지 반올림
+  gameState.money = Math.round(gameState.money * 100) / 100;
 
   // gameState.portfolio가 없으면 초기화
   if (!gameState.portfolio) {
@@ -121,19 +138,17 @@ function buyStock(companyId, quantity) {
 
   // 평균 매수가 계산
   const portfolio = gameState.portfolio[companyIdStr];
-  const newTotalCost = portfolio.totalCost + totalCost;
+  const newTotalCost =
+    Math.round((portfolio.totalCost + totalCost) * 100) / 100;
   const newQuantity = portfolio.quantity + quantityNum;
 
   portfolio.quantity = newQuantity;
   portfolio.totalCost = newTotalCost;
-  portfolio.avgPrice = newTotalCost / newQuantity;
-
-  // 자금 차감
-  gameState.money -= totalCost;
+  portfolio.avgPrice = Math.round((newTotalCost / newQuantity) * 100) / 100;
 
   // 디버그 로그 추가
   console.log(
-    `매수 성공: ${company.name} ${quantityNum}주, 단가: ${company.currentPrice}, 총액: ${totalCost}`
+    `매수 성공: ${company.name} ${quantityNum}주, 단가: ${company.currentPrice}, 총액: ${totalCost}, 남은 자금: ${gameState.money}`
   );
   console.log('매수 후 포트폴리오:', gameState.portfolio);
 
