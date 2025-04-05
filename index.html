@@ -88,6 +88,26 @@
       </div>
     </div>
 
+    <!-- 이미지 확대 팝업 -->
+    <div id="imageZoomPopup" class="zoom-popup hidden">
+      <div class="zoom-content">
+        <span class="close-btn">&times;</span>
+        <img id="zoomedImage" src="" alt="확대 이미지" />
+        <p id="zoomImageCaption" class="zoom-caption"></p>
+      </div>
+    </div>
+
+    <!-- 차트 확대 팝업 -->
+    <div id="chartZoomPopup" class="zoom-popup hidden">
+      <div class="zoom-content chart-zoom-content">
+        <span class="close-btn">&times;</span>
+        <h3 id="chartZoomTitle">주가 변동</h3>
+        <div class="chart-container">
+          <canvas id="zoomedStockChart"></canvas>
+        </div>
+      </div>
+    </div>
+
     <!-- Chart.js 추가 - 올바른 CDN 주소로 변경 -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.js"></script>
 
