@@ -1149,3 +1149,89 @@ input[type='number'] {
     grid-column: auto;
   }
 }
+
+/* 게임 종료 팝업 스타일 개선 */
+.grade-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 15px auto 25px;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  justify-content: center;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.grade-s {
+  background: linear-gradient(135deg, #ffd700, #ff8c00);
+  border-color: #ffd700;
+}
+
+.grade-a {
+  background: linear-gradient(135deg, #4caf50, #2e7d32);
+  border-color: #4caf50;
+}
+
+.grade-b {
+  background: linear-gradient(135deg, #2196f3, #0d47a1);
+  border-color: #2196f3;
+}
+
+.grade-c {
+  background: linear-gradient(135deg, #f44336, #b71c1c);
+  border-color: #f44336;
+}
+
+.grade-label {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 5px;
+}
+
+.grade-value {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.result-message {
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.investment-tips {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  padding: 15px 20px;
+  margin-top: 25px;
+}
+
+.investment-tips h3 {
+  color: #ffeb3b;
+  font-size: 1.2rem;
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+.investment-tips ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.investment-tips li {
+  color: #e0e0e0;
+  margin-bottom: 10px;
+  line-height: 1.5;
+  padding-left: 5px;
+}
+
+.investment-tips li:last-child {
+  margin-bottom: 0;
+}
