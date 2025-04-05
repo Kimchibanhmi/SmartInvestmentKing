@@ -82,8 +82,7 @@ function buyStock(companyId, quantity) {
   const totalCost = company.currentPrice * quantity;
 
   if (totalCost > gameState.money) {
-    // alert("자금이 부족합니다!"); // 이 부분을 변경
-    showNotification('자금이 부족합니다!', 'error');
+    showTradeResultMessage('자금이 부족합니다!', 'error');
     return false;
   }
 
@@ -97,6 +96,12 @@ function buyStock(companyId, quantity) {
   gameState.money -= totalCost;
   gameState.money = Math.round(gameState.money * 100) / 100;
 
+  // 성공 메시지 표시 - 초록색으로 표시
+  showTradeResultMessage(
+    `${company.name} ${quantity}주를 매수하였습니다.`,
+    'success'
+  );
+
   updateUI();
   return true;
 }
@@ -107,7 +112,7 @@ function sellStock(companyId, quantity) {
     !gameState.portfolio[companyId] ||
     gameState.portfolio[companyId] < quantity
   ) {
-    alert('보유한 주식이 부족합니다!');
+    showTradeResultMessage('보유한 주식이 부족합니다!', 'error');
     return false;
   }
 
@@ -123,6 +128,12 @@ function sellStock(companyId, quantity) {
   // 자금 증가
   gameState.money += totalValue;
   gameState.money = Math.round(gameState.money * 100) / 100;
+
+  // 성공 메시지 표시 - 빨간색으로 표시 (매도는 "sell" 타입 사용)
+  showTradeResultMessage(
+    `${company.name} ${quantity}주를 매도하였습니다.`,
+    'sell'
+  );
 
   updateUI();
   return true;
