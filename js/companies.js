@@ -178,11 +178,11 @@ const companies = [
     id: 9,
     name: '옵포 歐葡',
     namePinyin: 'Ōu pú',
-    logo: 'https://via.placeholder.com/80x80?text=옵포',
+    logo: 'assets/images/logos/oppu.png',
     ceo: {
       name: '첸요우민 陳有民',
       namePinyin: 'Chén Yǒumín',
-      image: 'https://via.placeholder.com/60x60?text=첸요우민',
+      image: 'assets/images/ceos/chenyoumin.png',
     },
     description:
       '혁신적인 카메라 기술을 특징으로 하는 스마트폰 제조업체입니다.',
@@ -202,11 +202,11 @@ const companies = [
     id: 10,
     name: '바이디유 百度游',
     namePinyin: 'Bǎi dù yóu',
-    logo: 'https://via.placeholder.com/80x80?text=바이디유',
+    logo: 'assets/images/logos/baiduyou.png',
     ceo: {
       name: '왕샤오창 王小昌',
       namePinyin: 'Wáng Xiǎochāng',
-      image: 'https://via.placeholder.com/60x60?text=왕샤오창',
+      image: 'assets/images/ceos/wangxiaochang.png',
     },
     description:
       '전기차와 자율주행 기술을 개발하는 미래 지향적 자동차 회사입니다.',
@@ -224,11 +224,11 @@ const companies = [
     id: 11,
     name: '니오 蜷鸥',
     namePinyin: 'Niǎn ōu',
-    logo: 'https://via.placeholder.com/80x80?text=니오',
+    logo: 'assets/images/logos/niao.png',
     ceo: {
       name: '리빈 李斌',
       namePinyin: 'Lǐ Bīn',
-      image: 'https://via.placeholder.com/60x60?text=리빈',
+      image: 'assets/images/ceos/libin.png',
     },
     description:
       '프리미엄 전기 자동차를 설계하고 생산하는 선도적인 회사입니다.',
@@ -246,11 +246,11 @@ const companies = [
     id: 12,
     name: '지리윈 吉利云',
     namePinyin: 'Jí lì yún',
-    logo: 'https://via.placeholder.com/80x80?text=지리윈',
+    logo: 'assets/images/logos/jiliyun.png',
     ceo: {
       name: '리수푸 李书福',
       namePinyin: 'Lǐ Shūfú',
-      image: 'https://via.placeholder.com/60x60?text=리수푸',
+      image: 'assets/images/ceos/lishufu.png',
     },
     description:
       '다양한 차종을 생산하는 중국의 대표적인 자동차 제조업체입니다.',
@@ -265,42 +265,44 @@ const companies = [
     volatility: 0.25,
   },
 
-  // 음료
+  // 반도체
   {
     id: 13,
-    name: '크리티 气利提',
-    namePinyin: 'Qì lì tí',
-    logo: 'https://via.placeholder.com/80x80?text=크리티',
+    name: 'SK 海脑芯 Hainaoxin',
+    namePinyin: 'SK Hǎinǎoxīn',
+    logo: 'assets/images/logos/skhainoxin.png',
     ceo: {
-      name: '롱메이메이 龙美美',
-      namePinyin: 'Lóng Měiměi',
-      image: 'https://via.placeholder.com/60x60?text=롱메이메이',
+      name: '곽노정 郭脑正',
+      namePinyin: 'Guō Nǎo Zhèng',
+      image: 'assets/images/ceos/guonaozheng.png',
     },
-    description: '다양한 차와 커피 제품을 생산하는 현대적인 음료 회사입니다.',
+    description: '세계적인 반도체 메모리 제조 기업입니다.',
     descriptionPinyin:
-      'Shēngchǎn duōyàng chá hé kāfēi chǎnpǐn de xiàndài yǐnliào gōngsī.',
-    products: ['밀크티 奶茶', '과일차 水果茶', '아이스커피 冰咖啡'],
-    services: ['프랜차이즈', '온라인 구독 서비스'],
-    industry: '음료',
-    initialPrice: 3.8,
-    currentPrice: 3.8,
-    priceHistory: [3.8],
-    volatility: 0.22,
+      'SK Hǎilìshì shì yī jiā quánqiú lǐngxiān de bàndǎotǐ cúnchǔ xìnpàn zhìzào qǐyè.',
+    products: ['DRAM', 'MAMD Flash', 'SSD'],
+    services: ['반도체 설계 및 솔루션 제공'],
+    industry: '반도체',
+    initialPrice: 10.8,
+    currentPrice: 10.8,
+    priceHistory: [10.8],
+    volatility: 0.29,
   },
+
+  // 음료
   {
     id: 14,
-    name: '위안양 源洋',
-    namePinyin: 'Yuán yáng',
-    logo: 'https://via.placeholder.com/80x80?text=위안양',
+    name: '농푸산취안 农夫山泉',
+    namePinyin: 'Nóngfū Shānquán',
+    logo: 'assets/images/logos/nongfushanquan.png',
     ceo: {
-      name: '장원중 张文中',
-      namePinyin: 'Zhāng Wénzhōng',
-      image: 'https://via.placeholder.com/60x60?text=장원중',
+      name: '중산산 钟睒睒',
+      namePinyin: 'Zhōng Shǎnshǎn',
+      image: 'assets/images/ceos/zhongshanshan.png',
     },
     description: '천연 생수와 건강 음료를 전문으로 하는 음료 회사입니다.',
     descriptionPinyin:
       'Zhuānyè shēngchǎn tiānrán kuàngquán shuǐ hé jiànkāng yǐnliào de gōngsī.',
-    products: ['위안양생수 源洋矿泉水', '위안양스포츠 源洋运动饮料'],
+    products: ['천연 생수', '비타민 음료'],
     services: ['홈 배달 서비스', '기업 공급'],
     industry: '음료',
     initialPrice: 2.5,
@@ -310,35 +312,35 @@ const companies = [
   },
   {
     id: 15,
-    name: '화라화 花啦花',
-    namePinyin: 'Huā la huā',
-    logo: 'https://via.placeholder.com/80x80?text=화라화',
+    name: '네이바 奈弗',
+    namePinyin: 'Nài Fú',
+    logo: 'assets/images/logos/naifu.png',
     ceo: {
-      name: '쉬잉화 徐映华',
-      namePinyin: 'Xú Yìnghuá',
-      image: 'https://via.placeholder.com/60x60?text=쉬잉화',
+      name: '최수연 崔秀妍',
+      namePinyin: 'Cuī Xiùyán',
+      image: 'assets/images/ceos/cuixiuyan.png',
     },
-    description: '대만에서 시작된 과일 주스와 스무디 전문점입니다.',
-    descriptionPinyin: 'Táiwān kāishǐ de shuǐguǒ zhī hé sīmùdì zhuāndiàn.',
-    products: ['과일 스무디 水果冰沙', '해초 주스 海藻汁'],
-    services: ['맞춤형 믹스', '건강 컨설팅'],
-    industry: '음료',
-    initialPrice: 2.1,
-    currentPrice: 2.1,
-    priceHistory: [2.1],
+    description: '한국의 대표 포털 사이트입니다.',
+    descriptionPinyin: 'Zhè shì Hánguó de dàibiǎo ménhù wǎngzhàn.',
+    products: ['네이버 뉴스', '네이버 웹툰', '네이버 쇼핑'],
+    services: ['검색 엔진', '소셜 미디어', '커뮤니티'],
+    industry: '인터넷',
+    initialPrice: 6.1,
+    currentPrice: 6.1,
+    priceHistory: [6.1],
     volatility: 0.2,
   },
 
   // 반도체
   {
     id: 16,
-    name: '대만반도체제조 台湾半导体制造',
+    name: 'TSMC 台湾半导体制造',
     namePinyin: 'Táiwān bàndǎotǐ zhìzào',
-    logo: 'https://via.placeholder.com/80x80?text=TWSC',
+    logo: 'assets/images/logos/taiwan.png',
     ceo: {
       name: '장중모 张忠谋',
       namePinyin: 'Zhāng Zhōngmóu',
-      image: 'https://via.placeholder.com/60x60?text=장중모',
+      image: 'assets/images/ceos/zhangzhongmou.png',
     },
     description: '세계 최대의 반도체 파운드리 중 하나로 첨단 칩을 생산합니다.',
     descriptionPinyin:
@@ -355,11 +357,11 @@ const companies = [
     id: 17,
     name: '화홍반도체 华虹半导体',
     namePinyin: 'Huá hóng bàndǎotǐ',
-    logo: 'https://via.placeholder.com/80x80?text=HHSC',
+    logo: 'assets/images/logos/huahong.png',
     ceo: {
       name: '가오원지 高文治',
       namePinyin: 'Gāo Wénzhì',
-      image: 'https://via.placeholder.com/60x60?text=가오원지',
+      image: 'assets/images/ceos/gaowenzhi.png',
     },
     description: '중국의 주요 반도체 제조업체로 특수목적 칩을 생산합니다.',
     descriptionPinyin:
@@ -376,11 +378,11 @@ const companies = [
     id: 18,
     name: '중샨마이크로 中山微电子',
     namePinyin: 'Zhōngshān wēi diànzǐ',
-    logo: 'https://via.placeholder.com/80x80?text=ZSME',
+    logo: 'assets/images/logos/zhongshan.png',
     ceo: {
       name: '리우타오 刘涛',
       namePinyin: 'Liú Tāo',
-      image: 'https://via.placeholder.com/60x60?text=리우타오',
+      image: 'assets/images/ceos/liutao.png',
     },
     description:
       '고성능 마이크로프로세서와 메모리 칩을 전문으로 하는 회사입니다.',
@@ -400,11 +402,11 @@ const companies = [
     id: 19,
     name: '녕데전력 宁德电力',
     namePinyin: 'Níngdé diànlì',
-    logo: 'https://via.placeholder.com/80x80?text=NDEP',
+    logo: 'assets/images/logos/ningde.png',
     ceo: {
       name: '장원창 曾文长',
       namePinyin: 'Zēng Wénzhǎng',
-      image: 'https://via.placeholder.com/60x60?text=장원창',
+      image: 'assets/images/ceos/zhangyanchang.png',
     },
     description:
       '세계적인 리튬이온 배터리 제조업체로 전기차 배터리로 유명합니다.',
@@ -422,11 +424,11 @@ const companies = [
     id: 20,
     name: '비와이디에너지 比亚地能源',
     namePinyin: 'Bǐ yà dì néngyuán',
-    logo: 'https://via.placeholder.com/80x80?text=BYDE',
+    logo: 'assets/images/logos/byde.png',
     ceo: {
       name: '왕추안푸 王传福',
       namePinyin: 'Wáng Chuánfú',
-      image: 'https://via.placeholder.com/60x60?text=왕추안푸',
+      image: 'assets/images/ceos/wangchuanfu.png',
     },
     description:
       '전기차 및 가전제품용 배터리를 생산하는 종합 에너지 솔루션 회사입니다.',
@@ -444,11 +446,11 @@ const companies = [
     id: 21,
     name: '쑨파워 讯能',
     namePinyin: 'Xùn néng',
-    logo: 'https://via.placeholder.com/80x80?text=XunPower',
+    logo: 'assets/images/logos/xunpower.png',
     ceo: {
       name: '쑨량칭 孙良青',
       namePinyin: 'Sūn Liángqīng',
-      image: 'https://via.placeholder.com/60x60?text=쑨량칭',
+      image: 'assets/images/ceos/sunliangqing.png',
     },
     description:
       '대만의 차세대 배터리 기술 개발에 주력하는 혁신적인 회사입니다.',
@@ -467,11 +469,11 @@ const companies = [
     id: 22,
     name: '중국인민은행 中国人民银行',
     namePinyin: 'Zhōngguó rénmín yínháng',
-    logo: 'https://via.placeholder.com/80x80?text=PBOC',
+    logo: 'assets/images/logos/pbo.png',
     ceo: {
       name: '이강 易纲',
       namePinyin: 'Yì Gāng',
-      image: 'https://via.placeholder.com/60x60?text=이강',
+      image: 'assets/images/ceos/yigang.png',
     },
     description: '중국의 주요 금융 기관으로 다양한 금융 서비스를 제공합니다.',
     descriptionPinyin:
@@ -488,11 +490,11 @@ const companies = [
     id: 23,
     name: '핑안금융 平安金融',
     namePinyin: "Píng'ān jīnróng",
-    logo: 'https://via.placeholder.com/80x80?text=PAFI',
+    logo: 'assets/images/logos/pafi.png',
     ceo: {
       name: '마밍저 马明哲',
       namePinyin: 'Mǎ Míngzhé',
-      image: 'https://via.placeholder.com/60x60?text=마밍저',
+      image: 'assets/images/ceos/mamingjie.png',
     },
     description: '보험, 은행, 자산 관리를 포함한 종합 금융 서비스 그룹입니다.',
     descriptionPinyin:
@@ -509,11 +511,11 @@ const companies = [
     id: 24,
     name: '타이완금융그룹 台湾金融集团',
     namePinyin: 'Táiwān jīnróng jítuán',
-    logo: 'https://via.placeholder.com/80x80?text=TFG',
+    logo: 'assets/images/logos/tfg.png',
     ceo: {
       name: '첸유웬 陈友元',
       namePinyin: 'Chén Yǒuyuán',
-      image: 'https://via.placeholder.com/60x60?text=첸유웬',
+      image: 'assets/images/ceos/chenyouyuan.png',
     },
     description:
       '대만을 기반으로 한 금융 그룹으로 동아시아 지역에 서비스를 제공합니다.',
@@ -533,11 +535,11 @@ const companies = [
     id: 25,
     name: '바이뚜 百图',
     namePinyin: 'Bǎi tú',
-    logo: 'https://via.placeholder.com/80x80?text=Baitu',
+    logo: 'assets/images/logos/baitu.png',
     ceo: {
       name: '리옌화 李彦华',
       namePinyin: 'Lǐ Yànhuá',
-      image: 'https://via.placeholder.com/60x60?text=리옌화',
+      image: 'assets/images/ceos/liyanhua.png',
     },
     description: '중국의 선도적인 인공지능 및 검색 엔진 회사입니다.',
     descriptionPinyin:
@@ -554,11 +556,11 @@ const companies = [
     id: 26,
     name: '센스타임 视觉时代',
     namePinyin: 'Shìjué shídài',
-    logo: 'https://via.placeholder.com/80x80?text=SenseTime',
+    logo: 'assets/images/logos/sensetime.png',
     ceo: {
       name: '상탕 商汤',
       namePinyin: 'Shāng Tāng',
-      image: 'https://via.placeholder.com/60x60?text=상탕',
+      image: 'assets/images/ceos/shangtang.png',
     },
     description: '컴퓨터 비전 및 딥 러닝 기술에 특화된 AI 기업입니다.',
     descriptionPinyin:
@@ -575,11 +577,11 @@ const companies = [
     id: 27,
     name: '아이폴로 爱普罗',
     namePinyin: 'Ài pǔ luó',
-    logo: 'https://via.placeholder.com/80x80?text=iPolo',
+    logo: 'assets/images/logos/ipolo.png',
     ceo: {
       name: '정원츠 郑文智',
       namePinyin: 'Zhèng Wénzhì',
-      image: 'https://via.placeholder.com/60x60?text=정원츠',
+      image: 'assets/images/ceos/zhengwenzhi.png',
     },
     description:
       '자율주행 및 로봇 공학 분야의 AI 솔루션을 개발하는 회사입니다.',
@@ -597,11 +599,11 @@ const companies = [
     id: 28,
     name: '다리과자 大理点心',
     namePinyin: 'Dàlǐ diǎnxīn',
-    logo: 'https://via.placeholder.com/80x80?text=다리과자',
+    logo: 'assets/images/logos/daliguoza.png',
     ceo: {
       name: '장티엔후 张天虎',
       namePinyin: 'Zhāng Tiānhǔ',
-      image: 'https://via.placeholder.com/60x60?text=장티엔후',
+      image: 'assets/images/ceos/zhangtianhu.png',
     },
     description:
       '전통적인 중국 제과와 현대적인 디저트를 생산하는 유명 제과 회사입니다.',
@@ -619,11 +621,11 @@ const companies = [
     id: 29,
     name: '홍콩스위트 香港甜品',
     namePinyin: 'Xiānggǎng tiánpǐn',
-    logo: 'https://via.placeholder.com/80x80?text=홍콩스위트',
+    logo: 'assets/images/logos/hongkong.png',
     ceo: {
       name: '리슈팡 李淑芳',
       namePinyin: 'Lǐ Shúfāng',
-      image: 'https://via.placeholder.com/60x60?text=리슈팡',
+      image: 'assets/images/ceos/lishufang.png',
     },
     description:
       '홍콩식 디저트와 베이커리 제품을 생산하는 인기 있는 제과 브랜드입니다.',
@@ -642,11 +644,11 @@ const companies = [
     id: 30,
     name: '삼성성 三星星',
     namePinyin: 'Sān xīng xīng',
-    logo: 'https://via.placeholder.com/80x80?text=삼성성',
+    logo: 'assets/images/logos/sanxing.png',
     ceo: {
       name: '리재용 李在镛',
       namePinyin: 'Lǐ Zàiyōng',
-      image: 'https://via.placeholder.com/60x60?text=리재용',
+      image: 'assets/images/ceos/lijia.png',
     },
     description:
       '다양한 전자제품과 반도체를 생산하는 한국 기반의 대형 기술 기업입니다.',
@@ -666,11 +668,11 @@ const companies = [
     id: 31,
     name: '룽거전자 龙鸽电子',
     namePinyin: 'Lóng gē diànzǐ',
-    logo: 'https://via.placeholder.com/80x80?text=룽거',
+    logo: 'assets/images/logos/longge.png',
     ceo: {
       name: '구본준 具本俊',
       namePinyin: 'Jù Běnjùn',
-      image: 'https://via.placeholder.com/60x60?text=구본준',
+      image: 'assets/images/ceos/gubenjun.png',
     },
     description:
       '가전제품과 모바일 기기를 전문으로 하는 한국의 혁신적인 기업입니다.',
@@ -693,11 +695,11 @@ const companies = [
     id: 32,
     name: '현다이자동차 现代汽车',
     namePinyin: 'Xiàndài qìchē',
-    logo: 'https://via.placeholder.com/80x80?text=현다이',
+    logo: 'assets/images/logos/xiandai.png',
     ceo: {
       name: '정의선 郑义宣',
       namePinyin: 'Zhèng Yìxuān',
-      image: 'https://via.placeholder.com/60x60?text=정의선',
+      image: 'assets/images/ceos/zhengyixuan.png',
     },
     description:
       '현대적인 자동차와 모빌리티 솔루션을 제공하는 한국의 선도적인 자동차 회사입니다.',
@@ -717,11 +719,11 @@ const companies = [
     id: 33,
     name: '아푸과기 阿蒲科技',
     namePinyin: 'Ā pú kējì',
-    logo: 'https://via.placeholder.com/80x80?text=아푸',
+    logo: 'assets/images/logos/apu.png',
     ceo: {
       name: '팀쿡 蒂姆库克',
       namePinyin: 'Dì mǔ kù kè',
-      image: 'https://via.placeholder.com/60x60?text=팀쿡',
+      image: 'assets/images/ceos/timcook.png',
     },
     description:
       '프리미엄 전자제품과 서비스를 제공하는 미국의 혁신 기술 회사입니다.',
@@ -741,11 +743,11 @@ const companies = [
     id: 34,
     name: '텐사라자동차 天闪汽车',
     namePinyin: 'Tiān shǎn qìchē',
-    logo: 'https://via.placeholder.com/80x80?text=텐사라',
+    logo: 'assets/images/logos/tensa.png',
     ceo: {
       name: '일론무 伊隆木',
       namePinyin: 'Yī lóng mù',
-      image: 'https://via.placeholder.com/60x60?text=일론무',
+      image: 'assets/images/ceos/yilongmu.png',
     },
     description:
       '전기차와 청정 에너지 솔루션을 개발하는 혁신적인 자동차 회사입니다.',
@@ -765,11 +767,11 @@ const companies = [
     id: 35,
     name: '앤부디아 眼部亚',
     namePinyin: 'Yǎn bù yà',
-    logo: 'https://via.placeholder.com/80x80?text=앤부디아',
+    logo: 'assets/images/logos/anbu.png',
     ceo: {
       name: '황젠순 黄建舜',
       namePinyin: 'Huáng Jiànshùn',
-      image: 'https://via.placeholder.com/60x60?text=황젠순',
+      image: 'assets/images/ceos/huangjianshun.png',
     },
     description:
       '고성능 그래픽 처리 장치와 AI 칩을 설계하는 선도적인 반도체 회사입니다.',
@@ -793,11 +795,11 @@ const companies = [
     id: 36,
     name: '마이타 未来大',
     namePinyin: 'Wèilái dà',
-    logo: 'https://via.placeholder.com/80x80?text=마이타',
+    logo: 'assets/images/logos/mayita.png',
     ceo: {
       name: '마크주커산 马克扎克山',
       namePinyin: 'Mǎkè Zhākè shān',
-      image: 'https://via.placeholder.com/60x60?text=마크주커산',
+      image: 'assets/images/ceos/markzuckerberg.png',
     },
     description:
       '소셜 미디어 플랫폼과 가상 현실 기술을 개발하는 글로벌 기술 회사입니다.',
@@ -821,11 +823,11 @@ const companies = [
     id: 37,
     name: '구거 古鸽',
     namePinyin: 'Gǔ gē',
-    logo: 'https://via.placeholder.com/80x80?text=구거',
+    logo: 'assets/images/logos/gugu.png',
     ceo: {
       name: '순다르피차이 孙达尔·皮查伊',
       namePinyin: "Sūn dá'ěr Píchá'āi",
-      image: 'https://via.placeholder.com/60x60?text=순다르피차이',
+      image: 'assets/images/ceos/sundaerpiqiai.png',
     },
     description:
       '검색 엔진, 클라우드 컴퓨팅, 인공지능 기술을 제공하는 세계적인 기술 회사입니다.',
@@ -849,11 +851,11 @@ const companies = [
     id: 38,
     name: '커커러 渴快乐',
     namePinyin: 'Kě kuàilè',
-    logo: 'https://via.placeholder.com/80x80?text=커커러',
+    logo: 'assets/images/logos/kukela.png',
     ceo: {
       name: '제임스퀸시 詹姆斯·昆西',
       namePinyin: 'Zhānmǔsī Kūnxī',
-      image: 'https://via.placeholder.com/60x60?text=제임스퀸시',
+      image: 'assets/images/ceos/jamesquincy.png',
     },
     description:
       '세계적으로 유명한 탄산음료와 다양한 음료 제품을 생산하는 회사입니다.',
@@ -873,11 +875,11 @@ const companies = [
     id: 39,
     name: '싱타부 星航步',
     namePinyin: 'Xīng háng bù',
-    logo: 'https://via.placeholder.com/80x80?text=싱타부',
+    logo: 'assets/images/logos/sintabu.png',
     ceo: {
       name: '라즈나달 拉兹·纳达尔',
       namePinyin: "Lā zī Nàdá'ěr",
-      image: 'https://via.placeholder.com/60x60?text=라즈나달',
+      image: 'assets/images/ceos/laznadal.png',
     },
     description:
       '프리미엄 커피와 다양한 음료를 제공하는 글로벌 커피 체인점입니다.',
@@ -901,11 +903,11 @@ const companies = [
     id: 40,
     name: '우바오 无限宝',
     namePinyin: 'Wúxiàn bǎo',
-    logo: 'https://via.placeholder.com/80x80?text=우바오',
+    logo: 'assets/images/logos/wuba.png',
     ceo: {
       name: '다라코스로샤히 达拉·科斯罗沙希',
       namePinyin: 'Dálā Kēsīluóshāxī',
-      image: 'https://via.placeholder.com/60x60?text=다라코스로샤히',
+      image: 'assets/images/ceos/darakosulohashi.png',
     },
     description:
       '차량 공유 및 배달 서비스를 제공하는 글로벌 모빌리티 플랫폼 회사입니다.',
@@ -913,7 +915,7 @@ const companies = [
       'Tígōng chēliàng gòngxiǎng jí pèisòng fúwù de quánqiú chūxíng píngtái gōngsī.',
     products: ['차량 공유 出行服务', '음식 배달 食品配送', '화물 운송 货运'],
     services: ['실시간 위치 추적', '모바일 결제'],
-    industry: '자동차',
+    industry: '모빌리티',
     initialPrice: 11.7,
     currentPrice: 11.7,
     priceHistory: [11.7],
@@ -933,6 +935,7 @@ const industries = [
   '금융',
   'AI',
   '제과',
+  '모빌리티',
 ];
 
 // 산업군별 회사 목록 생성 함수
