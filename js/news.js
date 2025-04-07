@@ -643,10 +643,10 @@ const newsDatabase = [
   },
   {
     id: 45,
-    headline: '쑨파워, 획기적인 소형 배터리 개발 讯能开发突破性小型电池',
+    headline: 'LG에너지솔루션, 획기적인 소형 배터리 개발 讯能开发突破性小型电池',
     headlinePinyin: 'Xùn néng kāifā tūpò xìng xiǎoxíng diànchí',
     content:
-      '쑨파워가 웨어러블 기기용 초소형 고성능 배터리 개발에 성공했습니다. 이 배터리는 기존 제품보다 50% 더 오래 지속됩니다.',
+      'LG에너지솔루션이 웨어러블 기기용 초소형 고성능 배터리 개발에 성공했습니다. 이 배터리는 기존 제품보다 50% 더 오래 지속됩니다.',
     contentPinyin:
       'Xùn néng chénggōng kāifā le yòng yú kěchuān dài shèbèi de chāo xiǎoxíng gāo xìngnéng diànchí. Gāi diànchí bǐ chuántǒng chǎnpǐn chíxù shíjiān zhǎng 50%.',
     isFake: false,
@@ -718,10 +718,10 @@ const newsDatabase = [
   },
   {
     id: 50,
-    headline: '타이완금융그룹, 해외 진출 확대 台湾金融集团扩大海外业务',
+    headline: '대만은행, 해외 진출 확대 台湾金融集团扩大海外业务',
     headlinePinyin: 'Táiwān jīnróng jítuán kuòdà hǎiwài yèwù',
     content:
-      '타이완금융그룹이 동남아시아 시장 진출을 확대한다고 발표했습니다. 이를 통해 글로벌 영향력을 높일 계획입니다.',
+      '대만은행이 동남아시아 시장 진출을 확대한다고 발표했습니다. 이를 통해 글로벌 영향력을 높일 계획입니다.',
     contentPinyin:
       'Táiwān jīnróng jítuán xuānbù jiāng kuòdà zài dōngnányà shìchǎng de yèwù. Mùbiāo shì tígāo qí quánqiú yǐngxiǎnglì.',
     isFake: false,
