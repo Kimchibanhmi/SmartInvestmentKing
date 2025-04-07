@@ -398,9 +398,9 @@ const companies = [
   },
 
   // 배터리
-  {
+ {
     id: 19,
-    name: '녕데전력 宁德电力',
+    name: 'CATL 宁德时代',
     namePinyin: 'Níngdé diànlì',
     logo: 'assets/images/logos/ningde.png',
     ceo: {
@@ -419,7 +419,6 @@ const companies = [
     currentPrice: 12.5,
     priceHistory: [12.5],
     volatility: 0.34,
-  },
   {
     id: 20,
     name: '비와이디에너지 比亚地能源',
