@@ -376,20 +376,20 @@ const companies = [
   },
   {
     id: 18,
-    name: '중샨마이크로 中山微电子',
-    namePinyin: 'Zhōngshān wēi diànzǐ',
-    logo: 'assets/images/logos/zhongshan.png',
+    name: 'SMIC 中芯国际',
+    namePinyin: 'Zhōngxīn Guójì',
+    logo: 'assets/images/logos/smic.png',
     ceo: {
-      name: '리우타오 刘涛',
-      namePinyin: 'Liú Tāo',
-      image: 'assets/images/ceos/liutao.png',
+      name: '자오 하이준 赵海军',
+      namePinyin: 'Zhào Hǎijūn',
+      image: 'assets/images/ceos/zhaohaijun.png',
     },
     description:
-      '고성능 마이크로프로세서와 메모리 칩을 전문으로 하는 회사입니다.',
+      'SMIC는 중국 본토를 대표하는 선도적인 반도체 파운드리 기업입니다',
     descriptionPinyin:
-      'Zhuānyè shēngchǎn gāoxìngnéng wēichǔlǐqì hé nèicún qiàn de gōngsī.',
-    products: ['그래픽 칩 图形芯片', '임베디드 프로세서 嵌入式处理器'],
-    services: ['반도체 설계 지원', '시스템 통합'],
+      'Zhōngxīn Guójì shì Zhōngguó Dàlù lǐngxiān de bàndǎotǐ jīngyuán dàigōng qǐyè.',
+    products: ['웨이퍼, 전력 칩'],
+    services: ['반도체 파운드리', '공정개발'],
     industry: '반도체',
     initialPrice: 7.3,
     currentPrice: 7.3,
@@ -398,7 +398,7 @@ const companies = [
   },
 
   // 배터리
- {
+  {
     id: 19,
     name: 'CATL 宁德时代',
     namePinyin: 'Níngdé diànlì',
@@ -419,6 +419,7 @@ const companies = [
     currentPrice: 12.5,
     priceHistory: [12.5],
     volatility: 0.34,
+  },
   {
     id: 20,
     name: '비와이디에너지 比亚地能源',
@@ -443,18 +444,18 @@ const companies = [
   },
   {
     id: 21,
-    name: '쑨파워 讯能',
-    namePinyin: 'Xùn néng',
-    logo: 'assets/images/logos/xunpower.png',
+    name: ' LG에너지솔루션 LG能源解决方案有限公司',
+    namePinyin: 'LG Néngyuán Jiějué Fāngàn Yǒuxiàn Gōngsī',
+    logo: 'assets/images/logos/lg.png',
     ceo: {
-      name: '쑨량칭 孙良青',
-      namePinyin: 'Sūn Liángqīng',
-      image: 'assets/images/ceos/sunliangqing.png',
+      name: '권영수 权泳守',
+      namePinyin: 'Quán Yǒngshǒu',
+      image: 'assets/images/ceos/quanyongshou.png',
     },
-    description:
-      '대만의 차세대 배터리 기술 개발에 주력하는 혁신적인 회사입니다.',
-    descriptionPinyin: 'Táiwān de xīn yīdài diànchí jìshù kāifā gōngsī.',
-    products: ['플렉시블 배터리 柔性电池', '소형 배터리 微型电池'],
+    description: '세게 2위 배터리 제조사, 혁신적인 회사입니다.',
+    descriptionPinyin:
+      'Tā shì shìjiè dì-èr dà diànchí zhìzào shāng, shì yī jiā jùyǒu chuàngxīnxìng de gōngsī.',
+    products: ['리튬이온 배터리'],
     services: ['맞춤형 배터리 설계', '배터리 성능 테스트'],
     industry: '배터리',
     initialPrice: 5.4,
@@ -508,9 +509,9 @@ const companies = [
   },
   {
     id: 24,
-    name: '타이완금융그룹 台湾金融集团',
-    namePinyin: 'Táiwān jīnróng jítuán',
-    logo: 'assets/images/logos/tfg.png',
+    name: '대만은행 臺灣銀行',
+    namePinyin: 'Táiwān Yínháng',
+    logo: 'assets/images/logos/taiwanbank.png',
     ceo: {
       name: '첸유웬 陈友元',
       namePinyin: 'Chén Yǒuyuán',
