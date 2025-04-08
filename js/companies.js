@@ -575,16 +575,15 @@ const companies = [
   },
   {
     id: 27,
-    name: '아이폴로 爱普罗',
-    namePinyin: 'Ài pǔ luó',
-    logo: 'assets/images/logos/ipolo.png',
+    name: '호라이즌로보틱스 地平线机器人公司',
+    namePinyin: 'Dìpíngxiàn Jīqìrén Gōngsī',
+    logo: 'assets/images/logos/horizon.png',
     ceo: {
-      name: '정원츠 郑文智',
-      namePinyin: 'Zhèng Wénzhì',
-      image: 'assets/images/ceos/zhengwenzhi.png',
+      name: '유카이 余凯',
+      namePinyin: 'Yú Kǎi',
+      image: 'assets/images/ceos/yukai.png',
     },
-    description:
-      '자율주행 및 로봇 공학 분야의 AI 솔루션을 개발하는 회사입니다.',
+    description: '자율주행 및 로봇 공학 분야의 AI 칩을 개발하는 회사입니다.',
     descriptionPinyin:
       "Kāifā zìzhǔ jiàshǐ hé jīqìrén gōngchéng lǐngyù de réngōng zhìnéng jiějué fāng'àn de gōngsī.",
     products: ['자율 로봇 自主机器人', 'AI 알고리즘 人工智能算法'],
@@ -597,18 +596,18 @@ const companies = [
   },
   {
     id: 28,
-    name: '다리과자 大理点心',
-    namePinyin: 'Dàlǐ diǎnxīn',
-    logo: 'assets/images/logos/daliguoza.png',
+    name: '왕왕 旺旺',
+    namePinyin: 'Wàng Wàng',
+    logo: 'assets/images/logos/wangwang.png',
     ceo: {
-      name: '장티엔후 张天虎',
-      namePinyin: 'Zhāng Tiānhǔ',
-      image: 'assets/images/ceos/zhangtianhu.png',
+      name: '채응맹 蔡衍明',
+      namePinyin: 'Cài Yǎnmíng',
+      image: 'assets/images/ceos/caiming.png',
     },
     description:
-      '전통적인 중국 제과와 현대적인 디저트를 생산하는 유명 제과 회사입니다.',
+      '대만에 본사를 두고 중국 본토에서 활동하는 전통적인 중국 제과와 현대적인 디저트를 생산하는 회사입니다.',
     descriptionPinyin:
-      'Shēngchǎn chuántǒng Zhōngguó diǎnxīn hé xiàndài gāodiǎn de zhùmíng diǎnxīn gōngsī.',
+      'Zhè shì yī jiā zǒngbù shè zài Táiwān, zài Zhōngguó Dàlù yùnyíng, shēngchǎn chuántǒng Zhōngshì diǎnxīn hé xiàndài tiándiǎn de gōngsī.',
     products: ['월병 月饼', '찹쌀떡 糯米糕', '계란과자 蛋糕'],
     services: ['맞춤 디저트', '기업 선물 서비스'],
     industry: '제과',
@@ -619,20 +618,20 @@ const companies = [
   },
   {
     id: 29,
-    name: '홍콩스위트 香港甜品',
-    namePinyin: 'Xiānggǎng tiánpǐn',
-    logo: 'assets/images/logos/hongkong.png',
+    name: '미쉐빙청 蜜雪冰城',
+    namePinyin: 'Mìxuě bīngchéng',
+    logo: 'assets/images/logos/mixue.png',
     ceo: {
-      name: '리슈팡 李淑芳',
-      namePinyin: 'Lǐ Shúfāng',
-      image: 'assets/images/ceos/lishufang.png',
+      name: '장홍차오 张红超',
+      namePinyin: 'Zhāng Hóngchāo',
+      image: 'assets/images/ceos/zhanghongchao.png',
     },
     description:
-      '홍콩식 디저트와 베이커리 제품을 생산하는 인기 있는 제과 브랜드입니다.',
+      '아이스크림과 버블티를 생산하는 인기 있는 디저트 브랜드입니다.',
     descriptionPinyin:
-      'Shēngchǎn Xiānggǎng shì gāodiǎn hé miànbāo diǎn chǎnpǐn de liúxíng diǎnxīn pǐnpái.',
-    products: ['에그타르트 蛋挞', '파인애플빵 菠萝包', '밀크푸딩 双皮奶'],
-    services: ['프랜차이즈 운영', '케이터링 서비스'],
+      'Zhè shì yí gè shēngchǎn bīngqílín hé zhēnzhū nǎichá de rénqì tiánpǐn pǐnpái.',
+    products: ['아이스크림', '버블티'],
+    services: ['프랜차이즈 운영'],
     industry: '제과',
     initialPrice: 2.9,
     currentPrice: 2.9,
@@ -642,11 +641,11 @@ const companies = [
   // 삼성전자 → 삼성성 (세 개의 별)
   {
     id: 30,
-    name: '삼성성 三星星',
-    namePinyin: 'Sān xīng xīng',
+    name: '삼성전자 三星电子',
+    namePinyin: 'Sān Xīng Diàn Zǐ',
     logo: 'assets/images/logos/sanxing.png',
     ceo: {
-      name: '리재용 李在镛',
+      name: '이재용 李在镛',
       namePinyin: 'Lǐ Zàiyōng',
       image: 'assets/images/ceos/lijia.png',
     },
@@ -654,7 +653,7 @@ const companies = [
       '다양한 전자제품과 반도체를 생산하는 한국 기반의 대형 기술 기업입니다.',
     descriptionPinyin:
       'Shēngchǎn gèzhǒng diànzǐ chǎnpǐn hé bàndǎotǐ de Hánguó jīdì de dàxíng jìshù qǐyè.',
-    products: ['은하폰 銀河手機', '스마트TV 智能电视', '메모리칩 记忆芯片'],
+    products: ['갤럭시폰 銀河手機', '스마트TV 智能电视', '메모리칩 记忆芯片'],
     services: ['클라우드 서비스', '인공지능 솔루션'],
     industry: '전자제품',
     initialPrice: 17.5,
@@ -666,8 +665,8 @@ const companies = [
   // LG전자 → 룽거 (용과 비둘기)
   {
     id: 31,
-    name: '룽거전자 龙鸽电子',
-    namePinyin: 'Lóng gē diànzǐ',
+    name: 'LG전자 LG电子',
+    namePinyin: 'LG Diànzǐ',
     logo: 'assets/images/logos/longge.png',
     ceo: {
       name: '구본준 具本俊',
@@ -714,11 +713,11 @@ const companies = [
     volatility: 0.28,
   },
 
-  // 애플 → 아푸 (사과)
+  // 애플 → 핑구어 (사과)
   {
     id: 33,
-    name: '아푸과기 阿蒲科技',
-    namePinyin: 'Ā pú kējì',
+    name: '핑구어 苹果',
+    namePinyin: 'Píngguǒ',
     logo: 'assets/images/logos/apu.png',
     ceo: {
       name: '팀쿡 蒂姆库克',
@@ -730,7 +729,7 @@ const companies = [
     descriptionPinyin:
       'Tígōng gāojí diànzǐ chǎnpǐn hé fúwù de Měiguó chuàngxīn jìshù gōngsī.',
     products: ['아이폰 爱峰', '아이패드 爱板', '맥북 魔客簿'],
-    services: ['구름 저장소 云储存', '음악 스트리밍 音乐流媒体'],
+    services: ['클라우드 저장소 云储存', '음악 스트리밍 音乐流媒体'],
     industry: '전자제품',
     initialPrice: 22.3,
     currentPrice: 22.3,
@@ -741,12 +740,12 @@ const companies = [
   // 테슬라 → 텐사라 (천둥 사라)
   {
     id: 34,
-    name: '텐사라자동차 天闪汽车',
-    namePinyin: 'Tiān shǎn qìchē',
+    name: '테슬라 特斯拉',
+    namePinyin: 'Tè Sī Lā',
     logo: 'assets/images/logos/tensa.png',
     ceo: {
-      name: '일론무 伊隆木',
-      namePinyin: 'Yī lóng mù',
+      name: '일론머스크 伊隆·马斯克',
+      namePinyin: 'Yīlóng Mǎsīkè',
       image: 'assets/images/ceos/yilongmu.png',
     },
     description:
